@@ -1,3 +1,4 @@
+import { useState, type FormEvent } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -37,12 +38,89 @@ function SectionHeading({
   );
 }
 
+type ContactFormState = {
+  name: string;
+  phone: string;
+  flavor: string;
+  topping: string;
+  deliveryDateTime: string;
+  observations: string;
+};
+
 export default function Home() {
   const router = useRouter();
   const routerLocale = router.locale ?? null;
   const locale: SiteLocale = isSiteLocale(routerLocale) ? routerLocale : 'pt-BR';
   const content = siteContent[locale];
   const primaryWhatsAppLink = buildWhatsAppLink(content.whatsapp.defaultMessage);
+  const [formState, setFormState] = useState<ContactFormState>({
+    name: '',
+    phone: '',
+    flavor: '',
+    topping: '',
+    deliveryDateTime: '',
+    observations: '',
+  });
+  const [submitState, setSubmitState] = useState<
+    'idle' | 'submitting' | 'success' | 'error' | 'validation'
+  >('idle');
+
+  const handleFieldChange = (field: keyof ContactFormState, value: string) => {
+    setFormState((current) => ({
+      ...current,
+      [field]: value,
+    }));
+    if (submitState !== 'idle') {
+      setSubmitState('idle');
+    }
+  };
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (
+      !formState.name.trim() ||
+      !formState.phone.trim() ||
+      !formState.flavor.trim() ||
+      !formState.topping.trim() ||
+      !formState.deliveryDateTime.trim()
+    ) {
+      setSubmitState('validation');
+      return;
+    }
+
+    setSubmitState('submitting');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formState,
+          locale,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Request failed');
+      }
+
+      setSubmitState('success');
+      setFormState({
+        name: '',
+        phone: '',
+        flavor: '',
+        topping: '',
+        deliveryDateTime: '',
+        observations: '',
+      });
+    } catch (error) {
+      console.error(error);
+      setSubmitState('error');
+    }
+  };
 
   return (
     <>
@@ -428,6 +506,166 @@ export default function Home() {
               <p className="mt-5 max-w-2xl text-base leading-8 text-amber-50/85">
                 {content.brandPositioning.description}
               </p>
+            </div>
+          </section>
+
+          <section id="contact" className="pt-20">
+            <SectionHeading
+              eyebrow={content.contactForm.eyebrow}
+              title={content.contactForm.title}
+              description={content.contactForm.description}
+            />
+
+            <div className="mt-10 grid gap-6 lg:grid-cols-[0.72fr_1.28fr]">
+              <div className="rounded-[2rem] border border-stone-200 bg-white/85 p-6 shadow-sm sm:p-8">
+                <p className="text-sm font-semibold uppercase tracking-[0.28em] text-amber-800/70">
+                  {siteConfig.brandName}
+                </p>
+                <h3 className="mt-3 text-2xl font-semibold text-stone-950">
+                  {content.contactForm.cardTitle}
+                </h3>
+                <p className="mt-4 text-base leading-7 text-stone-700">
+                  {content.contactForm.cardDescription}
+                </p>
+                <div className="mt-6 space-y-4 rounded-[1.5rem] bg-stone-50 p-5">
+                  <p className="text-sm text-stone-700">
+                    <span className="font-semibold text-stone-950">
+                      {content.footer.whatsappLabel}:
+                    </span>{' '}
+                    <a
+                      href={primaryWhatsAppLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="transition hover:text-stone-950"
+                    >
+                      {content.cta.contactToOrder}
+                    </a>
+                  </p>
+                  <p className="text-sm text-stone-700">
+                    <span className="font-semibold text-stone-950">Email:</span>{' '}
+                    {siteConfig.contactEmail}
+                  </p>
+                  <p className="text-sm text-stone-600">{content.footer.serviceNote}</p>
+                </div>
+              </div>
+
+              <form
+                onSubmit={handleSubmit}
+                className="rounded-[2rem] border border-stone-200 bg-white p-6 shadow-[0_22px_60px_rgba(91,67,50,0.08)] sm:p-8"
+              >
+                <div className="grid gap-5 md:grid-cols-2">
+                  <label className="flex flex-col gap-2 text-sm font-medium text-stone-800">
+                    {content.contactForm.fields.name}
+                    <input
+                      type="text"
+                      value={formState.name}
+                      onChange={(event) => handleFieldChange('name', event.target.value)}
+                      placeholder={content.contactForm.placeholders.name}
+                      className="rounded-2xl border border-stone-300 bg-white px-4 py-3 text-sm text-stone-900 outline-none transition focus:border-stone-500"
+                      required
+                    />
+                  </label>
+
+                  <label className="flex flex-col gap-2 text-sm font-medium text-stone-800">
+                    {content.contactForm.fields.phone}
+                    <input
+                      type="tel"
+                      value={formState.phone}
+                      onChange={(event) => handleFieldChange('phone', event.target.value)}
+                      placeholder={content.contactForm.placeholders.phone}
+                      className="rounded-2xl border border-stone-300 bg-white px-4 py-3 text-sm text-stone-900 outline-none transition focus:border-stone-500"
+                      required
+                    />
+                  </label>
+
+                  <label className="flex flex-col gap-2 text-sm font-medium text-stone-800">
+                    {content.contactForm.fields.flavor}
+                    <select
+                      value={formState.flavor}
+                      onChange={(event) => handleFieldChange('flavor', event.target.value)}
+                      className="rounded-2xl border border-stone-300 bg-white px-4 py-3 text-sm text-stone-900 outline-none transition focus:border-stone-500"
+                      required
+                    >
+                      <option value="">{content.contactForm.options.flavorPlaceholder}</option>
+                      {content.contactForm.options.flavors.map((option) => (
+                        <option key={option.value} value={option.label}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+
+                  <label className="flex flex-col gap-2 text-sm font-medium text-stone-800">
+                    {content.contactForm.fields.topping}
+                    <select
+                      value={formState.topping}
+                      onChange={(event) => handleFieldChange('topping', event.target.value)}
+                      className="rounded-2xl border border-stone-300 bg-white px-4 py-3 text-sm text-stone-900 outline-none transition focus:border-stone-500"
+                      required
+                    >
+                      <option value="">{content.contactForm.options.toppingPlaceholder}</option>
+                      {content.contactForm.options.toppings.map((option) => (
+                        <option key={option.value} value={option.label}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+
+                <div className="mt-5 grid gap-5">
+                  <label className="flex flex-col gap-2 text-sm font-medium text-stone-800">
+                    {content.contactForm.fields.deliveryDateTime}
+                    <input
+                      type="text"
+                      value={formState.deliveryDateTime}
+                      onChange={(event) =>
+                        handleFieldChange('deliveryDateTime', event.target.value)
+                      }
+                      placeholder={content.contactForm.placeholders.deliveryDateTime}
+                      className="rounded-2xl border border-stone-300 bg-white px-4 py-3 text-sm text-stone-900 outline-none transition focus:border-stone-500"
+                      required
+                    />
+                  </label>
+
+                  <label className="flex flex-col gap-2 text-sm font-medium text-stone-800">
+                    {content.contactForm.fields.observations}
+                    <textarea
+                      value={formState.observations}
+                      onChange={(event) =>
+                        handleFieldChange('observations', event.target.value)
+                      }
+                      placeholder={content.contactForm.placeholders.observations}
+                      rows={5}
+                      className="rounded-2xl border border-stone-300 bg-white px-4 py-3 text-sm text-stone-900 outline-none transition focus:border-stone-500"
+                    />
+                  </label>
+                </div>
+
+                <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <button
+                    type="submit"
+                    disabled={submitState === 'submitting'}
+                    className="rounded-full bg-stone-900 px-6 py-3 text-sm font-semibold text-amber-50 transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:bg-stone-500"
+                  >
+                    {submitState === 'submitting'
+                      ? content.contactForm.submittingLabel
+                      : content.contactForm.submitLabel}
+                  </button>
+
+                  {submitState === 'validation' && (
+                    <p className="text-sm text-amber-900">{content.contactForm.requiredError}</p>
+                  )}
+                  {submitState === 'success' && (
+                    <p className="text-sm text-emerald-700">
+                      {content.contactForm.successMessage}
+                    </p>
+                  )}
+                  {submitState === 'error' && (
+                    <p className="text-sm text-red-700">{content.contactForm.errorMessage}</p>
+                  )}
+                </div>
+              </form>
             </div>
           </section>
 

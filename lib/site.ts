@@ -10,6 +10,7 @@ export const siteConfig = {
   brandName: "D'Lourdes Casa de Bolos",
   instagramUrl: 'https://instagram.com/dlourdes.bolos',
   whatsappNumber: '5511958316072',
+  contactEmail: 'dlourdesoficial@gmail.com',
 } as const;
 
 export const localeLabels: Record<SiteLocale, string> = {
@@ -34,6 +35,7 @@ export const siteContent = {
       { label: 'Produtos', href: '#products' },
       { label: 'Galeria', href: '#gallery' },
       { label: 'Como pedir', href: '#how-to-order' },
+      { label: 'Contato', href: '#contact' },
       { label: 'FAQ', href: '#faq' },
     ],
     cta: {
@@ -236,6 +238,48 @@ export const siteContent = {
         },
       ],
     },
+    contactForm: {
+      eyebrow: 'Contato e pedidos',
+      title: 'Envie sua solicitação por e-mail e receba retorno para finalizar o pedido.',
+      description:
+        'Se preferir, você pode preencher o formulário com os detalhes do bolo desejado. A mensagem será enviada para a equipe da D’Lourdes por e-mail.',
+      cardTitle: 'Formulário de contato',
+      cardDescription:
+        'Informe os detalhes principais do pedido ou do seu contato. Os campos marcados como obrigatórios ajudam a acelerar o atendimento.',
+      submitLabel: 'Enviar solicitação',
+      submittingLabel: 'Enviando...',
+      successMessage:
+        'Sua mensagem foi enviada com sucesso. A D’Lourdes entrará em contato em breve.',
+      errorMessage:
+        'Não foi possível enviar sua mensagem agora. Tente novamente em instantes ou use o WhatsApp.',
+      requiredError: 'Preencha os campos obrigatórios antes de enviar.',
+      fields: {
+        name: 'Nome',
+        phone: 'Telefone',
+        flavor: 'Sabor',
+        topping: 'Cobertura',
+        deliveryDateTime: 'Data e horário de entrega/retirada',
+        observations: 'Observações',
+      },
+      placeholders: {
+        name: 'Seu nome completo',
+        phone: '(11) 99999-9999',
+        deliveryDateTime: 'Ex.: 22/03/2026 às 15h',
+        observations: 'Detalhes extras, preferência de horário ou informações importantes.',
+      },
+      options: {
+        flavorPlaceholder: 'Selecione o sabor',
+        toppingPlaceholder: 'Selecione a cobertura',
+        flavors: [
+          { value: 'carrot', label: 'Bolo Caseiro de Cenoura' },
+          { value: 'chocolate', label: 'Bolo Caseiro de Chocolate' },
+        ],
+        toppings: [
+          { value: 'without', label: 'Sem cobertura de chocolate' },
+          { value: 'with', label: 'Com cobertura de chocolate' },
+        ],
+      },
+    },
     finalCta: {
       eyebrow: 'Pedido final',
       title: 'Pronta para pedir um bolo caseiro com acabamento elegante e sabor memorável?',
@@ -263,6 +307,7 @@ export const siteContent = {
       { label: 'Products', href: '#products' },
       { label: 'Gallery', href: '#gallery' },
       { label: 'How to Order', href: '#how-to-order' },
+      { label: 'Contact', href: '#contact' },
       { label: 'FAQ', href: '#faq' },
     ],
     cta: {
@@ -465,6 +510,48 @@ export const siteContent = {
         },
       ],
     },
+    contactForm: {
+      eyebrow: 'Contact and orders',
+      title: 'Send your request by email and get a reply to complete your order.',
+      description:
+        'If you prefer, you can fill in the form with the cake details you want. The message will be sent to the D’Lourdes team by email.',
+      cardTitle: 'Contact form',
+      cardDescription:
+        'Share the main order or contact details. Required fields help speed up the response.',
+      submitLabel: 'Send request',
+      submittingLabel: 'Sending...',
+      successMessage:
+        'Your message was sent successfully. D’Lourdes will get back to you soon.',
+      errorMessage:
+        'We could not send your message right now. Please try again in a moment or use WhatsApp.',
+      requiredError: 'Fill in the required fields before sending.',
+      fields: {
+        name: 'Name',
+        phone: 'Phone',
+        flavor: 'Flavor',
+        topping: 'Cake topping',
+        deliveryDateTime: 'Delivery or pickup date and time',
+        observations: 'Observations',
+      },
+      placeholders: {
+        name: 'Your full name',
+        phone: '+55 11 99999-9999',
+        deliveryDateTime: 'Example: 03/22/2026 at 3:00 PM',
+        observations: 'Extra details, preferred time, or important notes.',
+      },
+      options: {
+        flavorPlaceholder: 'Select a flavor',
+        toppingPlaceholder: 'Select a topping',
+        flavors: [
+          { value: 'carrot', label: 'Homemade Carrot Cake' },
+          { value: 'chocolate', label: 'Homemade Chocolate Cake' },
+        ],
+        toppings: [
+          { value: 'without', label: 'Without chocolate topping' },
+          { value: 'with', label: 'With chocolate topping' },
+        ],
+      },
+    },
     finalCta: {
       eyebrow: 'Final CTA',
       title: 'Ready to order a homemade cake with an elegant finish and memorable flavor?',
@@ -492,6 +579,7 @@ export const siteContent = {
       { label: 'Productos', href: '#products' },
       { label: 'Galería', href: '#gallery' },
       { label: 'Cómo pedir', href: '#how-to-order' },
+      { label: 'Contacto', href: '#contact' },
       { label: 'FAQ', href: '#faq' },
     ],
     cta: {
@@ -693,6 +781,48 @@ export const siteContent = {
             'Lo ideal es pedir con anticipación, especialmente para horarios específicos o días de mayor demanda.',
         },
       ],
+    },
+    contactForm: {
+      eyebrow: 'Contacto y pedidos',
+      title: 'Envía tu solicitud por correo y recibe respuesta para finalizar el pedido.',
+      description:
+        'Si lo prefieres, puedes completar el formulario con los detalles del pastel que deseas. El mensaje se enviará por correo al equipo de D’Lourdes.',
+      cardTitle: 'Formulario de contacto',
+      cardDescription:
+        'Comparte los detalles principales del pedido o de tu contacto. Los campos obligatorios ayudan a agilizar la respuesta.',
+      submitLabel: 'Enviar solicitud',
+      submittingLabel: 'Enviando...',
+      successMessage:
+        'Tu mensaje fue enviado correctamente. D’Lourdes se pondrá en contacto pronto.',
+      errorMessage:
+        'No fue posible enviar tu mensaje ahora. Inténtalo de nuevo en unos minutos o usa WhatsApp.',
+      requiredError: 'Completa los campos obligatorios antes de enviar.',
+      fields: {
+        name: 'Nombre',
+        phone: 'Teléfono',
+        flavor: 'Sabor',
+        topping: 'Cobertura',
+        deliveryDateTime: 'Fecha y hora de entrega o recogida',
+        observations: 'Observaciones',
+      },
+      placeholders: {
+        name: 'Tu nombre completo',
+        phone: '+55 11 99999-9999',
+        deliveryDateTime: 'Ej.: 22/03/2026 a las 15:00',
+        observations: 'Detalles extra, horario preferido o información importante.',
+      },
+      options: {
+        flavorPlaceholder: 'Selecciona un sabor',
+        toppingPlaceholder: 'Selecciona una cobertura',
+        flavors: [
+          { value: 'carrot', label: 'Pastel Casero de Zanahoria' },
+          { value: 'chocolate', label: 'Pastel Casero de Chocolate' },
+        ],
+        toppings: [
+          { value: 'without', label: 'Sin cobertura de chocolate' },
+          { value: 'with', label: 'Con cobertura de chocolate' },
+        ],
+      },
     },
     finalCta: {
       eyebrow: 'Cierre',
