@@ -1,0 +1,11 @@
+<svg width="800" height="960" viewBox="0 0 800 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="960" rx="48" fill="#F3E6D6"/>
+  <rect x="64" y="80" width="672" height="800" rx="36" fill="#FFF8F0"/>
+  <path d="M257 679L378 330C385.801 307.514 407.008 292.417 430.808 292.417H443.263C466.921 292.417 488.037 307.337 495.925 329.642L620 680H257V679Z" fill="#69412B"/>
+  <path d="M314 680L410 395C416.652 375.255 435.185 361.958 456.021 361.958C477.603 361.958 496.631 376.223 502.65 396.949L589 680H314Z" fill="#865538"/>
+  <path d="M359 486H526L546 551H339L359 486Z" fill="#A86E49"/>
+  <path d="M338 551H546L567 619H318L338 551Z" fill="#C4885A"/>
+  <path d="M319 619H567L589 680H297L319 619Z" fill="#D89A68"/>
+  <text x="400" y="778" text-anchor="middle" fill="#6B4A36" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">Placeholder de fatia</text>
+  <text x="400" y="822" text-anchor="middle" fill="#92735D" font-family="Arial, Helvetica, sans-serif" font-size="24">Troque por foto mostrando a textura</text>
+</svg>

@@ -22,9 +22,9 @@ export const localeLabels: Record<SiteLocale, string> = {
 export const siteContent = {
   'pt-BR': {
     metaDescription:
-      "Bolos caseiros de cenoura e chocolate, com ou sem cobertura de chocolate. Faça seu pedido na D'Lourdes Casa de Bolos pelo WhatsApp.",
+      'Bolos caseiros macios e irresistíveis. Peça bolo de cenoura ou bolo de chocolate da D’Lourdes Casa de Bolos pelo WhatsApp.',
     brandTag: 'Casa de bolos artesanal',
-    brandStatement: 'Mais do que bolo, uma experiência simples de cuidado e sabor.',
+    brandStatement: 'Bolos caseiros preparados com cuidado e sabor.',
     languageLabel: 'Idioma',
     auth: {
       signIn: 'Entrar',
@@ -40,105 +40,102 @@ export const siteContent = {
     ],
     cta: {
       orderWhatsapp: 'Pedir pelo WhatsApp',
-      exploreCakes: 'Ver os bolos',
+      exploreCakes: 'Ver nossos bolos',
       visitInstagram: 'Ver Instagram',
-      contactToOrder: 'Falar para pedir',
+      contactToOrder: 'Pedir pelo WhatsApp',
     },
     whatsapp: {
       defaultMessage:
         "Olá! Gostaria de pedir um bolo da D'Lourdes Casa de Bolos.",
     },
     hero: {
-      eyebrow: 'Bolo caseiro de cenoura e bolo caseiro de chocolate',
-      title: 'Bolos caseiros com sabor marcante e uma apresentação especial.',
+      eyebrow: 'D’Lourdes Casa de Bolos',
+      title: 'Bolos caseiros macios e irresistíveis.',
       description:
-        'Na D’Lourdes, cada bolo é preparado com cuidado para deixar os momentos simples mais acolhedores, elegantes e memoráveis. Escolha bolo de cenoura ou bolo de chocolate, com ou sem cobertura de chocolate.',
+        'Bolo de cenoura e bolo de chocolate preparados com cuidado, perfeitos para acompanhar um café ou compartilhar com quem você gosta.',
+      highlight: 'Disponíveis nas versões simples ou com cobertura de chocolate.',
       stats: [
-        { label: 'Cardápio', value: '2 clássicos' },
-        { label: 'Variações', value: 'Sem ou com cobertura' },
-        { label: 'Atendimento', value: 'Rápido no WhatsApp' },
+        { label: 'Produção', value: 'Feito sob encomenda' },
+        { label: 'Sabores', value: 'Cenoura e chocolate' },
+        { label: 'Pedido', value: 'Rápido no WhatsApp' },
       ],
       feature: {
-        eyebrow: 'Toque especial',
-        title: 'Opção com cobertura de chocolate',
+        eyebrow: 'Destaque',
+        title: 'Versões simples ou com cobertura',
         description:
-          'Um acabamento elegante para celebrações, presentes e mesas de café cheias de afeto.',
+          'Escolha a versão que combina melhor com o seu momento e finalize o pedido em poucos toques.',
       },
-      statementEyebrow: 'Essência da marca',
+      statementEyebrow: 'Texto destaque',
     },
     valueStrip: {
-      label: 'Diferencial',
       items: [
-        'Produção caseira',
-        'Ingredientes selecionados',
-        'Feito sob encomenda',
-        'Atendimento ágil no WhatsApp',
+        {
+          title: 'Produção caseira',
+          description: 'Bolos preparados com atenção ao sabor e à textura.',
+        },
+        {
+          title: 'Ingredientes selecionados',
+          description: 'Receitas equilibradas para garantir maciez e sabor marcante.',
+        },
+        {
+          title: 'Pedido sob encomenda',
+          description: 'Produção organizada para manter qualidade em cada bolo.',
+        },
+        {
+          title: 'Atendimento rápido',
+          description: 'Faça seu pedido facilmente pelo WhatsApp.',
+        },
       ],
+    },
+    socialProof: {
+      eyebrow: 'Clientes satisfeitos',
+      title: 'Clientes satisfeitos',
+      quote:
+        '“Bolo extremamente macio e saboroso. Perfeito para o café da tarde.”',
+      author: 'Cliente D’Lourdes',
+      role: 'Depoimento real em breve',
+      ratingLabel: '5 de 5 estrelas',
+      image: '/customer-placeholder.svg',
+      imageAlt: 'Imagem de placeholder para foto de cliente satisfeita.',
     },
     productsSection: {
       eyebrow: 'Produtos',
-      title: 'Um cardápio enxuto construído em torno de dois clássicos caseiros.',
+      title: 'Nossos Bolos',
       description:
-        'A D’Lourdes mantém uma seleção intencional para que cada bolo seja preparado com consistência, sabor equilibrado e uma apresentação que já encanta no primeiro olhar.',
-      selectionEyebrow: 'Seleção artesanal',
-      variationsLabel: 'Variações disponíveis',
+        'Receitas clássicas que combinam perfeitamente com um café ou um momento especial.',
+      selectionEyebrow: 'Bolo artesanal',
+      variationsLabel: 'Variações',
     },
     products: [
       {
         name: 'Bolo Caseiro de Cenoura',
         description:
-          'Uma massa macia, com sabor equilibrado e o conforto de um bolo clássico de verdade. Disponível sem cobertura ou com cobertura de chocolate.',
-        variants: ['Sem cobertura de chocolate', 'Com cobertura de chocolate'],
+          'Massa macia, sabor equilibrado e aquele clássico que nunca sai de moda.',
+        variants: ['sem cobertura', 'com cobertura de chocolate'],
         image: '/carrot-cake.png',
         imageAlt: 'Bolo caseiro de cenoura sem cobertura de chocolate.',
         whatsappMessage:
-          "Olá! Gostaria de pedir um Bolo Caseiro de Cenoura da D'Lourdes Casa de Bolos.",
+          'Olá! Gostaria de pedir um bolo de cenoura da D’Lourdes Casa de Bolos.',
+        ctaLabel: 'Pedir bolo de cenoura',
       },
       {
         name: 'Bolo Caseiro de Chocolate',
         description:
-          'Um clássico rico e acolhedor, com textura macia e sabor marcante. Disponível sem cobertura ou com cobertura de chocolate.',
-        variants: ['Sem cobertura de chocolate', 'Com cobertura de chocolate'],
+          'Um bolo intenso e macio, perfeito para quem gosta de chocolate de verdade.',
+        variants: ['sem cobertura', 'com cobertura de chocolate'],
         image: '/chocolate-cake.png',
         imageAlt: 'Bolo caseiro de chocolate sem cobertura de chocolate.',
         whatsappMessage:
-          "Olá! Gostaria de pedir um Bolo Caseiro de Chocolate da D'Lourdes Casa de Bolos.",
+          'Olá! Gostaria de pedir um bolo de chocolate da D’Lourdes Casa de Bolos.',
+        ctaLabel: 'Pedir bolo de chocolate',
       },
     ],
-    whyChoose: {
-      eyebrow: 'Por que D’Lourdes',
-      title: 'Escolhas cuidadosas criam uma experiência de confeitaria simples e memorável.',
-      description:
-        'O posicionamento da marca segue refinado e acolhedor: menu focado, qualidade consistente, apresentação convidativa e um caminho de compra direto para celebrações do dia a dia.',
-      items: [
-        {
-          title: 'Sabor verdadeiramente caseiro',
-          description:
-            'Receitas clássicas, preparadas com equilíbrio, afeto e aquele sabor que parece familiar desde a primeira fatia.',
-        },
-        {
-          title: 'Apresentação elegante',
-          description:
-            'Cada bolo recebe um acabamento cuidadoso para ficar tão convidativo na mesa quanto saboroso ao servir.',
-        },
-        {
-          title: 'Menu focado, qualidade constante',
-          description:
-            'Um cardápio pequeno e intencional permite atenção real a cada bolo de cenoura e bolo de chocolate.',
-        },
-        {
-          title: 'Pedido fácil',
-          description:
-            'Você escolhe o bolo, envia uma mensagem no WhatsApp e confirma entrega ou retirada sem etapas desnecessárias.',
-        },
-      ],
-    },
     gallerySection: {
       eyebrow: 'Galeria',
-      title: 'Uma galeria pronta para valorizar os produtos e a atmosfera da marca.',
+      title: 'Detalhes que abrem o apetite',
       description:
-        'A seção agora usa imagens reais dos bolos e já fica preparada para futuras atualizações com novos ângulos, closes e composições de mesa.',
-      note: 'Substitua ou amplie a galeria sempre que novas fotos da marca estiverem disponíveis.',
+        'Cada bolo é preparado para oferecer uma experiência completa: sabor, aroma, textura e apresentação.',
+      note: 'Espaço pronto para novas fotos dos bolos e closes da textura.',
       items: [
         {
           title: 'Bolo de cenoura sem cobertura',
@@ -160,81 +157,88 @@ export const siteContent = {
           image: '/chocolate-cake-with-chocolate-topper.png',
           alt: 'Bolo caseiro de chocolate com cobertura de chocolate.',
         },
+        {
+          title: 'Fatia mostrando a textura',
+          image: '/cake-slice-placeholder.svg',
+          alt: 'Placeholder para imagem de uma fatia de bolo mostrando a textura.',
+        },
       ],
     },
     howToOrder: {
-      eyebrow: 'Como pedir',
-      title: 'Um fluxo simples em três passos para converter rápido.',
-      description:
-        'O caminho do cliente fica direto: escolha o bolo, fale pelo WhatsApp e combine entrega ou retirada.',
+      eyebrow: 'Pedido',
+      title: 'Como fazer seu pedido',
+      description: '',
       steps: [
         {
           step: '01',
           title: 'Escolha seu bolo',
           description:
-            'Selecione o bolo caseiro de cenoura ou o bolo caseiro de chocolate e depois defina se prefere a versão sem cobertura ou com cobertura de chocolate.',
+            'Selecione entre bolo de cenoura ou bolo de chocolate, com ou sem cobertura.',
         },
         {
           step: '02',
-          title: 'Entre em contato pelo WhatsApp',
+          title: 'Fale conosco no WhatsApp',
           description:
-            'Envie o pedido em poucos toques e receba uma resposta rápida com disponibilidade e confirmação.',
+            'Confirmamos disponibilidade, prazo de preparo e detalhes do pedido.',
         },
         {
           step: '03',
-          title: 'Receba ou retire seu pedido',
+          title: 'Receba ou retire',
           description:
-            'Finalize da forma mais conveniente para sua rotina, com retirada ou entrega local combinada.',
+            'Combinamos a melhor forma para você aproveitar seu bolo com praticidade.',
         },
       ],
       stepLabel: 'Passo',
     },
-    brandPositioning: {
-      eyebrow: 'Posicionamento da marca',
-      title: 'Feito para momentos simples e especiais, com cuidado, sabor e elegância acolhedora.',
-      description:
-        'A D’Lourdes Casa de Bolos une conforto caseiro e apresentação caprichada para que cada pedido pareça atencioso, convidativo e fácil de compartilhar.',
+    aboutSection: {
+      eyebrow: 'Sobre',
+      title: 'D’Lourdes Casa de Bolos',
+      paragraphs: [
+        'A D’Lourdes nasceu com uma proposta simples: oferecer bolos caseiros preparados com cuidado, sabor e capricho.',
+        'Acreditamos que um bom bolo pode tornar qualquer momento mais especial — seja no café da tarde, ao receber visitas ou para presentear alguém.',
+      ],
+      classicsIntro: 'Começamos com dois clássicos que nunca decepcionam:',
+      classics: ['bolo de cenoura', 'bolo de chocolate'],
     },
     faqSection: {
       eyebrow: 'FAQ',
-      title: 'Respostas úteis antes de fechar o pedido.',
-      description:
-        'A primeira versão da página mantém perguntas práticas e orientadas à conversão, com espaço para ampliar conforme a operação for sendo definida.',
+      title: 'Dúvidas frequentes',
+      description: '',
       items: [
         {
           question: 'Quais sabores de bolo estão disponíveis?',
           answer:
-            'No momento, a D’Lourdes oferece Bolo Caseiro de Cenoura e Bolo Caseiro de Chocolate.',
+            'Atualmente trabalhamos com bolo de cenoura e bolo de chocolate.',
         },
         {
           question: 'Existe opção de cobertura?',
           answer:
-            'Sim. Os dois bolos podem ser pedidos sem cobertura de chocolate ou com cobertura de chocolate.',
+            'Sim. Ambos os bolos podem ser pedidos com ou sem cobertura de chocolate.',
         },
         {
           question: 'Os bolos são feitos sob encomenda?',
           answer:
-            'Sim. Os pedidos são preparados com cuidado para manter frescor, sabor e boa apresentação.',
+            'Sim. Os bolos são preparados sob encomenda para garantir qualidade.',
         },
         {
           question: 'Como faço um pedido?',
           answer:
-            'Basta enviar uma mensagem pelo WhatsApp, escolher o bolo e a variação desejada, e confirmar a melhor forma de entrega ou retirada.',
+            'Você pode fazer seu pedido diretamente pelo WhatsApp.',
         },
         {
           question: 'Há entrega disponível?',
           answer:
-            'A entrega pode ser combinada conforme a área de atendimento e os detalhes do pedido.',
+            'A disponibilidade de entrega pode variar. Consulte no momento do pedido.',
         },
         {
           question: 'Posso retirar meu pedido?',
           answer:
-            'Sim. A retirada pode ser combinada diretamente pelo WhatsApp durante a confirmação do pedido.',
+            'Sim. A retirada pode ser combinada durante o atendimento.',
         },
         {
           question: 'Com quanta antecedência devo pedir?',
           answer:
-            'O ideal é pedir com antecedência, especialmente para horários específicos ou dias de maior procura.',
+            'O prazo depende da agenda de produção. Recomendamos pedir com antecedência.',
         },
       ],
     },
@@ -283,13 +287,14 @@ export const siteContent = {
       },
     },
     finalCta: {
-      eyebrow: 'Pedido final',
-      title: 'Pronta para pedir um bolo caseiro com acabamento elegante e sabor memorável?',
+      eyebrow: 'Pedido',
+      title: 'Pronto para escolher seu bolo?',
       description:
-        'Fale com a D’Lourdes no WhatsApp para escolher o bolo, confirmar a variação desejada e combinar retirada ou entrega.',
+        'Fale com a D’Lourdes Casa de Bolos pelo WhatsApp e consulte disponibilidade para fazer seu pedido.',
+      buttonLabel: 'Fazer pedido pelo WhatsApp',
     },
     footer: {
-      serviceNote: 'Pedidos disponíveis para retirada ou entrega local sob combinação.',
+      serviceNote: 'Pedidos sob encomenda.',
       whatsappLabel: 'WhatsApp',
       instagramLabel: 'Instagram',
     },
@@ -327,6 +332,7 @@ export const siteContent = {
       title: 'Homemade cakes with remarkable flavor and a special presentation.',
       description:
         'At D’Lourdes, every cake is prepared with care to make simple moments feel warmer, more elegant, and more memorable. Choose carrot cake or chocolate cake, with or without chocolate topping.',
+      highlight: 'Available in plain versions or with chocolate topping.',
       stats: [
         { label: 'Menu', value: '2 classics' },
         { label: 'Variations', value: 'Plain or topped' },
@@ -341,13 +347,34 @@ export const siteContent = {
       statementEyebrow: 'Brand statement',
     },
     valueStrip: {
-      label: 'Value',
       items: [
-        'Homemade production',
-        'Selected ingredients',
-        'Made to order',
-        'Fast WhatsApp service',
+        {
+          title: 'Homemade production',
+          description: 'Cakes prepared with care for flavor and texture.',
+        },
+        {
+          title: 'Selected ingredients',
+          description: 'Balanced recipes that keep every cake soft and flavorful.',
+        },
+        {
+          title: 'Made to order',
+          description: 'Production is organized to preserve quality in every cake.',
+        },
+        {
+          title: 'Fast service',
+          description: 'Place your order easily through WhatsApp.',
+        },
       ],
+    },
+    socialProof: {
+      eyebrow: 'Satisfied customers',
+      title: 'Satisfied customers',
+      quote: '“Extremely soft and flavorful cake. Perfect for afternoon coffee.”',
+      author: 'D’Lourdes customer',
+      role: 'Photo placeholder',
+      ratingLabel: '5 out of 5 stars',
+      image: '/customer-placeholder.svg',
+      imageAlt: 'Placeholder image for a satisfied customer.',
     },
     productsSection: {
       eyebrow: 'Products',
@@ -367,6 +394,7 @@ export const siteContent = {
         imageAlt: 'Homemade carrot cake without chocolate topping.',
         whatsappMessage:
           "Hello! I would like to order a Homemade Carrot Cake from D'Lourdes Casa de Bolos.",
+        ctaLabel: 'Order carrot cake',
       },
       {
         name: 'Homemade Chocolate Cake',
@@ -377,6 +405,7 @@ export const siteContent = {
         imageAlt: 'Homemade chocolate cake without chocolate topping.',
         whatsappMessage:
           "Hello! I would like to order a Homemade Chocolate Cake from D'Lourdes Casa de Bolos.",
+        ctaLabel: 'Order chocolate cake',
       },
     ],
     whyChoose: {
@@ -434,6 +463,11 @@ export const siteContent = {
           image: '/chocolate-cake-with-chocolate-topper.png',
           alt: 'Homemade chocolate cake with chocolate topping.',
         },
+        {
+          title: 'Slice showing texture',
+          image: '/cake-slice-placeholder.svg',
+          alt: 'Placeholder image for a sliced cake showing texture.',
+        },
       ],
     },
     howToOrder: {
@@ -468,6 +502,16 @@ export const siteContent = {
       title: 'Made for simple special moments, with care, flavor, and welcoming elegance.',
       description:
         'D’Lourdes Casa de Bolos brings together homemade comfort and polished presentation so each order feels thoughtful, inviting, and easy to share.',
+    },
+    aboutSection: {
+      eyebrow: 'About',
+      title: 'D’Lourdes Casa de Bolos',
+      paragraphs: [
+        'D’Lourdes was born with a simple proposal: to offer homemade cakes prepared with care, flavor, and attention to detail.',
+        'We believe a good cake can make any moment feel more special, whether for afternoon coffee, welcoming guests, or gifting someone.',
+      ],
+      classicsIntro: 'We started with two classics that never disappoint:',
+      classics: ['carrot cake', 'chocolate cake'],
     },
     faqSection: {
       eyebrow: 'FAQ',
@@ -561,6 +605,7 @@ export const siteContent = {
       title: 'Ready to order a homemade cake with an elegant finish and memorable flavor?',
       description:
         'Message D’Lourdes on WhatsApp to choose your cake, confirm your preferred variation, and arrange pickup or delivery.',
+      buttonLabel: 'Place your order on WhatsApp',
     },
     footer: {
       serviceNote: 'Orders available for pickup or local delivery by arrangement.',
@@ -601,6 +646,7 @@ export const siteContent = {
       title: 'Pasteles caseros con un sabor memorable y una presentación especial.',
       description:
         'En D’Lourdes, cada pastel se prepara con cuidado para hacer que los momentos simples se sientan más cálidos, elegantes y memorables. Elige pastel de zanahoria o de chocolate, con o sin cobertura de chocolate.',
+      highlight: 'Disponibles en versiones simples o con cobertura de chocolate.',
       stats: [
         { label: 'Menú', value: '2 clásicos' },
         { label: 'Variaciones', value: 'Sin o con cobertura' },
@@ -615,13 +661,34 @@ export const siteContent = {
       statementEyebrow: 'Esencia de la marca',
     },
     valueStrip: {
-      label: 'Diferencial',
       items: [
-        'Producción casera',
-        'Ingredientes seleccionados',
-        'Hecho por encargo',
-        'Atención ágil por WhatsApp',
+        {
+          title: 'Producción casera',
+          description: 'Pasteles preparados con atención al sabor y a la textura.',
+        },
+        {
+          title: 'Ingredientes seleccionados',
+          description: 'Recetas equilibradas para asegurar suavidad y sabor destacado.',
+        },
+        {
+          title: 'Pedido por encargo',
+          description: 'Producción organizada para mantener calidad en cada pastel.',
+        },
+        {
+          title: 'Atención rápida',
+          description: 'Haz tu pedido fácilmente por WhatsApp.',
+        },
       ],
+    },
+    socialProof: {
+      eyebrow: 'Clientes satisfechos',
+      title: 'Clientes satisfechos',
+      quote: '“Pastel extremamente suave y sabroso. Perfecto para el café de la tarde.”',
+      author: 'Cliente de D’Lourdes',
+      role: 'Placeholder de foto',
+      ratingLabel: '5 de 5 estrellas',
+      image: '/customer-placeholder.svg',
+      imageAlt: 'Imagen de placeholder para cliente satisfecha.',
     },
     productsSection: {
       eyebrow: 'Productos',
@@ -641,6 +708,7 @@ export const siteContent = {
         imageAlt: 'Pastel casero de zanahoria sin cobertura de chocolate.',
         whatsappMessage:
           "¡Hola! Me gustaría pedir un Pastel Casero de Zanahoria de D'Lourdes Casa de Bolos.",
+        ctaLabel: 'Pedir pastel de zanahoria',
       },
       {
         name: 'Pastel Casero de Chocolate',
@@ -651,6 +719,7 @@ export const siteContent = {
         imageAlt: 'Pastel casero de chocolate sin cobertura de chocolate.',
         whatsappMessage:
           "¡Hola! Me gustaría pedir un Pastel Casero de Chocolate de D'Lourdes Casa de Bolos.",
+        ctaLabel: 'Pedir pastel de chocolate',
       },
     ],
     whyChoose: {
@@ -708,6 +777,11 @@ export const siteContent = {
           image: '/chocolate-cake-with-chocolate-topper.png',
           alt: 'Pastel casero de chocolate con cobertura de chocolate.',
         },
+        {
+          title: 'Porción mostrando la textura',
+          image: '/cake-slice-placeholder.svg',
+          alt: 'Placeholder para imagen de una porción mostrando la textura.',
+        },
       ],
     },
     howToOrder: {
@@ -742,6 +816,16 @@ export const siteContent = {
       title: 'Hecho para momentos simples y especiales, con cuidado, sabor y una elegancia acogedora.',
       description:
         'D’Lourdes Casa de Bolos une confort casero y presentación cuidada para que cada pedido se sienta atento, invitante y fácil de compartir.',
+    },
+    aboutSection: {
+      eyebrow: 'Sobre',
+      title: 'D’Lourdes Casa de Bolos',
+      paragraphs: [
+        'D’Lourdes nació con una propuesta simple: ofrecer pasteles caseros preparados con cuidado, sabor y esmero.',
+        'Creemos que un buen pastel puede hacer cualquier momento más especial, ya sea para el café de la tarde, recibir visitas o regalar a alguien.',
+      ],
+      classicsIntro: 'Comenzamos con dos clásicos que nunca fallan:',
+      classics: ['pastel de zanahoria', 'pastel de chocolate'],
     },
     faqSection: {
       eyebrow: 'FAQ',
@@ -835,6 +919,7 @@ export const siteContent = {
       title: '¿Lista para pedir un pastel casero con acabado elegante y sabor memorable?',
       description:
         'Escribe a D’Lourdes por WhatsApp para elegir el pastel, confirmar la variación deseada y coordinar recogida o entrega.',
+      buttonLabel: 'Hacer pedido por WhatsApp',
     },
     footer: {
       serviceNote: 'Pedidos disponibles para recogida o entrega local bajo coordinación.',

@@ -302,6 +302,9 @@ export default function Home() {
               <p className="mt-6 max-w-2xl text-base leading-8 text-stone-700 sm:text-lg">
                 {content.hero.description}
               </p>
+              <div className="mt-5 inline-flex rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-sm font-medium text-amber-900">
+                {content.hero.highlight}
+              </div>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
                   href={primaryWhatsAppLink}
@@ -371,15 +374,52 @@ export default function Home() {
             <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
               {content.valueStrip.items.map((item) => (
                 <div
-                  key={item}
+                  key={item.title}
                   className="rounded-2xl border border-stone-200/70 bg-stone-50/80 px-4 py-4"
                 >
-                  <p className="text-sm font-semibold uppercase tracking-[0.24em] text-amber-800/70">
-                    {content.valueStrip.label}
-                  </p>
-                  <p className="mt-2 text-base font-medium text-stone-900">{item}</p>
+                  <p className="text-base font-semibold text-stone-900">{item.title}</p>
+                  <p className="mt-2 text-sm leading-6 text-stone-700">{item.description}</p>
                 </div>
               ))}
+            </div>
+          </section>
+
+          <section className="pt-20">
+            <div className="grid gap-6 rounded-[2rem] border border-stone-200 bg-white/85 p-6 shadow-sm sm:p-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-center">
+              <div className="relative mx-auto w-full max-w-[240px] overflow-hidden rounded-[1.75rem] bg-stone-100 shadow-sm">
+                <Image
+                  src={content.socialProof.image}
+                  alt={content.socialProof.imageAlt}
+                  width={640}
+                  height={640}
+                  className="h-auto w-full"
+                />
+              </div>
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.28em] text-amber-800/70">
+                  {content.socialProof.eyebrow}
+                </p>
+                <h2 className="mt-3 text-3xl font-semibold tracking-tight text-stone-950">
+                  {content.socialProof.title}
+                </h2>
+                <div
+                  aria-label={content.socialProof.ratingLabel}
+                  className="mt-4 flex items-center gap-1 text-amber-700"
+                >
+                  {Array.from({ length: 5 }).map((_, index) => (
+                    <span key={index} className="text-lg">
+                      ★
+                    </span>
+                  ))}
+                </div>
+                <p className="mt-4 max-w-2xl text-lg leading-8 text-stone-700">
+                  {content.socialProof.quote}
+                </p>
+                <p className="mt-4 text-sm font-semibold text-stone-900">
+                  {content.socialProof.author}
+                </p>
+                <p className="text-sm text-stone-500">{content.socialProof.role}</p>
+              </div>
             </div>
           </section>
 
@@ -441,34 +481,11 @@ export default function Home() {
                           rel="noreferrer"
                           className="inline-flex rounded-full bg-stone-900 px-5 py-3 text-sm font-semibold text-amber-50 transition hover:bg-stone-800"
                         >
-                          {content.cta.orderWhatsapp}
+                          {product.ctaLabel}
                         </a>
                       </div>
                     </div>
                   </div>
-                </article>
-              ))}
-            </div>
-          </section>
-
-          <section className="pt-20">
-            <SectionHeading
-              eyebrow={content.whyChoose.eyebrow}
-              title={content.whyChoose.title}
-              description={content.whyChoose.description}
-            />
-
-            <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-              {content.whyChoose.items.map((item) => (
-                <article
-                  key={item.title}
-                  className="rounded-[1.75rem] border border-stone-200/80 bg-white/85 p-6 shadow-sm"
-                >
-                  <p className="text-sm font-semibold uppercase tracking-[0.24em] text-amber-800/70">
-                    D’Lourdes
-                  </p>
-                  <h3 className="mt-3 text-xl font-semibold text-stone-950">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-stone-700">{item.description}</p>
                 </article>
               ))}
             </div>
@@ -481,7 +498,7 @@ export default function Home() {
               description={content.gallerySection.description}
             />
 
-            <div className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+            <div className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
               {content.gallerySection.items.map((item) => (
                 <figure
                   key={item.title}
@@ -493,7 +510,7 @@ export default function Home() {
                       alt={item.alt}
                       width={800}
                       height={960}
-                      className="h-auto w-full rounded-[1.25rem]"
+                      className="h-auto w-full rounded-[1.25rem] object-cover"
                     />
                   </div>
                   <figcaption className="px-5 pb-5 pt-2">
@@ -533,14 +550,29 @@ export default function Home() {
           <section className="pt-20">
             <div className="overflow-hidden rounded-[2.25rem] bg-[linear-gradient(135deg,#4f2f22_0%,#8f603d_55%,#d0a46d_100%)] px-6 py-10 text-amber-50 shadow-[0_30px_80px_rgba(86,54,36,0.2)] sm:px-10 sm:py-14">
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-100/80">
-                {content.brandPositioning.eyebrow}
+                {content.aboutSection.eyebrow}
               </p>
               <h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-tight sm:text-4xl">
-                {content.brandPositioning.title}
+                {content.aboutSection.title}
               </h2>
-              <p className="mt-5 max-w-2xl text-base leading-8 text-amber-50/85">
-                {content.brandPositioning.description}
+              <div className="mt-5 max-w-3xl space-y-4 text-base leading-8 text-amber-50/90">
+                {content.aboutSection.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+              <p className="mt-6 text-sm font-semibold uppercase tracking-[0.26em] text-amber-100/80">
+                {content.aboutSection.classicsIntro}
               </p>
+              <div className="mt-4 flex flex-wrap gap-3">
+                {content.aboutSection.classics.map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-amber-100/25 bg-white/10 px-4 py-2 text-sm font-medium text-amber-50"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
           </section>
 
@@ -768,7 +800,7 @@ export default function Home() {
                   rel="noreferrer"
                   className="rounded-full bg-stone-900 px-6 py-3 text-center text-sm font-semibold text-amber-50 transition hover:bg-stone-800"
                 >
-                  {content.cta.orderWhatsapp}
+                  {content.finalCta.buttonLabel}
                 </a>
                 <a
                   href={siteConfig.instagramUrl}
@@ -821,6 +853,15 @@ export default function Home() {
             </div>
           </footer>
         </div>
+
+        <a
+          href={primaryWhatsAppLink}
+          target="_blank"
+          rel="noreferrer"
+          className="fixed bottom-4 right-4 z-50 rounded-full bg-stone-900 px-5 py-3 text-sm font-semibold text-amber-50 shadow-[0_18px_40px_rgba(40,25,18,0.22)] transition hover:bg-stone-800 sm:bottom-6 sm:right-6"
+        >
+          {content.cta.orderWhatsapp}
+        </a>
       </main>
     </>
   );
