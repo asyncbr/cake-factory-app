@@ -1,4 +1,4 @@
-export const supportedLocales = ['pt-BR', 'en'] as const;
+export const supportedLocales = ['pt-BR', 'en', 'es'] as const;
 
 export type SiteLocale = (typeof supportedLocales)[number];
 
@@ -11,6 +11,12 @@ export const siteConfig = {
   instagramUrl: 'https://instagram.com/dlourdes.bolos',
   whatsappNumber: '5511958316072',
 } as const;
+
+export const localeLabels: Record<SiteLocale, string> = {
+  'pt-BR': 'PT-BR',
+  en: 'EN',
+  es: 'ES',
+};
 
 export const siteContent = {
   'pt-BR': {
@@ -467,6 +473,235 @@ export const siteContent = {
     },
     footer: {
       serviceNote: 'Orders available for pickup or local delivery by arrangement.',
+      whatsappLabel: 'WhatsApp',
+      instagramLabel: 'Instagram',
+    },
+  },
+  es: {
+    metaDescription:
+      "Pasteles caseros de zanahoria y chocolate, con o sin cobertura de chocolate. Haz tu pedido en D'Lourdes Casa de Bolos por WhatsApp.",
+    brandTag: 'Casa artesanal de pasteles',
+    brandStatement: 'Más que pastel, una experiencia simple de cuidado y sabor.',
+    languageLabel: 'Idioma',
+    auth: {
+      signIn: 'Iniciar sesión',
+      app: 'App',
+      goToApp: 'Ir a la app',
+    },
+    navigation: [
+      { label: 'Productos', href: '#products' },
+      { label: 'Galería', href: '#gallery' },
+      { label: 'Cómo pedir', href: '#how-to-order' },
+      { label: 'FAQ', href: '#faq' },
+    ],
+    cta: {
+      orderWhatsapp: 'Pedir por WhatsApp',
+      exploreCakes: 'Ver los pasteles',
+      visitInstagram: 'Ver Instagram',
+      contactToOrder: 'Contactar para pedir',
+    },
+    whatsapp: {
+      defaultMessage:
+        "¡Hola! Me gustaría pedir un pastel de D'Lourdes Casa de Bolos.",
+    },
+    hero: {
+      eyebrow: 'Pastel casero de zanahoria y pastel casero de chocolate',
+      title: 'Pasteles caseros con un sabor memorable y una presentación especial.',
+      description:
+        'En D’Lourdes, cada pastel se prepara con cuidado para hacer que los momentos simples se sientan más cálidos, elegantes y memorables. Elige pastel de zanahoria o de chocolate, con o sin cobertura de chocolate.',
+      stats: [
+        { label: 'Menú', value: '2 clásicos' },
+        { label: 'Variaciones', value: 'Sin o con cobertura' },
+        { label: 'Atención', value: 'Rápida por WhatsApp' },
+      ],
+      feature: {
+        eyebrow: 'Toque especial',
+        title: 'Opción con cobertura de chocolate',
+        description:
+          'Un acabado elegante para celebraciones, regalos y momentos alrededor del café.',
+      },
+      statementEyebrow: 'Esencia de la marca',
+    },
+    valueStrip: {
+      label: 'Diferencial',
+      items: [
+        'Producción casera',
+        'Ingredientes seleccionados',
+        'Hecho por encargo',
+        'Atención ágil por WhatsApp',
+      ],
+    },
+    productsSection: {
+      eyebrow: 'Productos',
+      title: 'Un menú enfocado construido alrededor de dos clásicos caseros.',
+      description:
+        'D’Lourdes mantiene una selección intencional para que cada pastel se prepare con consistencia, sabor equilibrado y una presentación que encanta desde la primera mirada.',
+      selectionEyebrow: 'Selección artesanal',
+      variationsLabel: 'Variaciones disponibles',
+    },
+    products: [
+      {
+        name: 'Pastel Casero de Zanahoria',
+        description:
+          'Una masa suave, con sabor equilibrado y la sensación reconfortante de un pastel clásico de verdad. Disponible sin cobertura o con cobertura de chocolate.',
+        variants: ['Sin cobertura de chocolate', 'Con cobertura de chocolate'],
+        image: '/carrot-cake.png',
+        imageAlt: 'Pastel casero de zanahoria sin cobertura de chocolate.',
+        whatsappMessage:
+          "¡Hola! Me gustaría pedir un Pastel Casero de Zanahoria de D'Lourdes Casa de Bolos.",
+      },
+      {
+        name: 'Pastel Casero de Chocolate',
+        description:
+          'Un clásico intenso y reconfortante, con textura suave y sabor memorable. Disponible sin cobertura o con cobertura de chocolate.',
+        variants: ['Sin cobertura de chocolate', 'Con cobertura de chocolate'],
+        image: '/chocolate-cake.png',
+        imageAlt: 'Pastel casero de chocolate sin cobertura de chocolate.',
+        whatsappMessage:
+          "¡Hola! Me gustaría pedir un Pastel Casero de Chocolate de D'Lourdes Casa de Bolos.",
+      },
+    ],
+    whyChoose: {
+      eyebrow: 'Por qué D’Lourdes',
+      title: 'Las decisiones cuidadosas crean una experiencia de pastelería simple y memorable.',
+      description:
+        'El posicionamiento de la marca sigue siendo refinado y acogedor: menú enfocado, calidad consistente, presentación atractiva y un camino de compra directo para celebraciones cotidianas.',
+      items: [
+        {
+          title: 'Sabor realmente casero',
+          description:
+            'Recetas clásicas preparadas con equilibrio, cariño y ese sabor que se siente familiar desde la primera porción.',
+        },
+        {
+          title: 'Presentación elegante',
+          description:
+            'Cada pastel recibe un acabado cuidadoso para verse tan atractivo en la mesa como sabroso al servir.',
+        },
+        {
+          title: 'Menú enfocado, calidad constante',
+          description:
+            'Un menú pequeño e intencional permite atención real a cada pastel de zanahoria y de chocolate.',
+        },
+        {
+          title: 'Pedido fácil',
+          description:
+            'Eliges el pastel, envías un mensaje por WhatsApp y confirmas entrega o recogida sin pasos innecesarios.',
+        },
+      ],
+    },
+    gallerySection: {
+      eyebrow: 'Galería',
+      title: 'Una galería lista para destacar los productos y la atmósfera de la marca.',
+      description:
+        'La sección ahora usa imágenes reales de los pasteles y queda preparada para futuras actualizaciones con nuevos ángulos, acercamientos y composiciones de mesa.',
+      note: 'Sustituye o amplía la galería siempre que haya nuevas fotos de la marca.',
+      items: [
+        {
+          title: 'Pastel de zanahoria sin cobertura',
+          image: '/carrot-cake.png',
+          alt: 'Pastel casero de zanahoria sin cobertura de chocolate.',
+        },
+        {
+          title: 'Pastel de zanahoria con cobertura',
+          image: '/carrot-cake-with-chocolate-topper.png',
+          alt: 'Pastel casero de zanahoria con cobertura de chocolate.',
+        },
+        {
+          title: 'Pastel de chocolate sin cobertura',
+          image: '/chocolate-cake.png',
+          alt: 'Pastel casero de chocolate sin cobertura de chocolate.',
+        },
+        {
+          title: 'Pastel de chocolate con cobertura',
+          image: '/chocolate-cake-with-chocolate-topper.png',
+          alt: 'Pastel casero de chocolate con cobertura de chocolate.',
+        },
+      ],
+    },
+    howToOrder: {
+      eyebrow: 'Cómo pedir',
+      title: 'Un flujo simple en tres pasos para convertir rápido.',
+      description:
+        'El camino del cliente es directo: elige el pastel, escribe por WhatsApp y coordina entrega o recogida.',
+      steps: [
+        {
+          step: '01',
+          title: 'Elige tu pastel',
+          description:
+            'Selecciona el pastel casero de zanahoria o el pastel casero de chocolate y luego define si prefieres la versión sin cobertura o con cobertura de chocolate.',
+        },
+        {
+          step: '02',
+          title: 'Escribe por WhatsApp',
+          description:
+            'Envía el pedido en pocos toques y recibe una respuesta rápida con disponibilidad y confirmación.',
+        },
+        {
+          step: '03',
+          title: 'Recibe o recoge tu pedido',
+          description:
+            'Finaliza de la forma más conveniente para tu rutina, con recogida o entrega local coordinada.',
+        },
+      ],
+      stepLabel: 'Paso',
+    },
+    brandPositioning: {
+      eyebrow: 'Posicionamiento de marca',
+      title: 'Hecho para momentos simples y especiales, con cuidado, sabor y una elegancia acogedora.',
+      description:
+        'D’Lourdes Casa de Bolos une confort casero y presentación cuidada para que cada pedido se sienta atento, invitante y fácil de compartir.',
+    },
+    faqSection: {
+      eyebrow: 'FAQ',
+      title: 'Respuestas útiles antes de cerrar el pedido.',
+      description:
+        'La primera versión de la página mantiene preguntas prácticas y orientadas a la conversión, con espacio para ampliar a medida que la operación se defina.',
+      items: [
+        {
+          question: '¿Qué sabores de pastel están disponibles?',
+          answer:
+            'Por el momento, D’Lourdes ofrece Pastel Casero de Zanahoria y Pastel Casero de Chocolate.',
+        },
+        {
+          question: '¿Existe opción de cobertura?',
+          answer:
+            'Sí. Los dos pasteles pueden pedirse sin cobertura de chocolate o con cobertura de chocolate.',
+        },
+        {
+          question: '¿Los pasteles se hacen por encargo?',
+          answer:
+            'Sí. Los pedidos se preparan con cuidado para mantener frescura, sabor y buena presentación.',
+        },
+        {
+          question: '¿Cómo hago un pedido?',
+          answer:
+            'Solo tienes que enviar un mensaje por WhatsApp, elegir el pastel y la variación deseada, y confirmar la mejor forma de entrega o recogida.',
+        },
+        {
+          question: '¿Hay entrega disponible?',
+          answer:
+            'La entrega puede coordinarse según la zona de atención y los detalles del pedido.',
+        },
+        {
+          question: '¿Puedo recoger mi pedido?',
+          answer:
+            'Sí. La recogida puede coordinarse directamente por WhatsApp durante la confirmación del pedido.',
+        },
+        {
+          question: '¿Con cuánta anticipación debo pedir?',
+          answer:
+            'Lo ideal es pedir con anticipación, especialmente para horarios específicos o días de mayor demanda.',
+        },
+      ],
+    },
+    finalCta: {
+      eyebrow: 'Cierre',
+      title: '¿Lista para pedir un pastel casero con acabado elegante y sabor memorable?',
+      description:
+        'Escribe a D’Lourdes por WhatsApp para elegir el pastel, confirmar la variación deseada y coordinar recogida o entrega.',
+    },
+    footer: {
+      serviceNote: 'Pedidos disponibles para recogida o entrega local bajo coordinación.',
       whatsappLabel: 'WhatsApp',
       instagramLabel: 'Instagram',
     },

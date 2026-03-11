@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import {
   buildWhatsAppLink,
   isSiteLocale,
+  localeLabels,
   siteConfig,
   siteContent,
   supportedLocales,
@@ -37,31 +38,11 @@ function SectionHeading({
 }
 
 export default function Home() {
-  const [locale, setLocale] = useState<SiteLocale>(() => {
-    if (typeof window === 'undefined') {
-      return 'pt-BR';
-    }
-
-    const params = new URLSearchParams(window.location.search);
-    const lang = params.get('lang');
-
-    return isSiteLocale(lang) ? lang : 'pt-BR';
-  });
-
-  useEffect(() => {
-    document.documentElement.lang = locale;
-  }, [locale]);
-
+  const router = useRouter();
+  const routerLocale = router.locale ?? null;
+  const locale: SiteLocale = isSiteLocale(routerLocale) ? routerLocale : 'pt-BR';
   const content = siteContent[locale];
   const primaryWhatsAppLink = buildWhatsAppLink(content.whatsapp.defaultMessage);
-
-  const handleLocaleChange = (nextLocale: SiteLocale) => {
-    setLocale(nextLocale);
-
-    const url = new URL(window.location.href);
-    url.searchParams.set('lang', nextLocale);
-    window.history.replaceState({}, '', url.toString());
-  };
 
   return (
     <>
@@ -90,10 +71,10 @@ export default function Home() {
                 <div className="flex items-center gap-3 lg:hidden">
                   <div className="hidden items-center gap-1 rounded-full border border-stone-200 bg-stone-50/80 p-1 sm:flex">
                     {supportedLocales.map((option) => (
-                      <button
+                      <Link
                         key={option}
-                        type="button"
-                        onClick={() => handleLocaleChange(option)}
+                        href={router.asPath}
+                        locale={option}
                         aria-pressed={locale === option}
                         className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
                           locale === option
@@ -101,8 +82,8 @@ export default function Home() {
                             : 'text-stone-600 hover:text-stone-900'
                         }`}
                       >
-                        {option === 'pt-BR' ? 'PT-BR' : 'EN'}
-                      </button>
+                        {localeLabels[option]}
+                      </Link>
                     ))}
                   </div>
                   <SignedOut>
@@ -148,10 +129,10 @@ export default function Home() {
                   </span>
                   <div className="flex items-center gap-1 rounded-full border border-stone-200 bg-stone-50/80 p-1">
                     {supportedLocales.map((option) => (
-                      <button
+                      <Link
                         key={option}
-                        type="button"
-                        onClick={() => handleLocaleChange(option)}
+                        href={router.asPath}
+                        locale={option}
                         aria-pressed={locale === option}
                         className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
                           locale === option
@@ -159,8 +140,8 @@ export default function Home() {
                             : 'text-stone-600 hover:text-stone-900'
                         }`}
                       >
-                        {option === 'pt-BR' ? 'PT-BR' : 'EN'}
-                      </button>
+                        {localeLabels[option]}
+                      </Link>
                     ))}
                   </div>
                 </div>
