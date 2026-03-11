@@ -163,13 +163,7 @@ export default function Home() {
                     </SignInButton>
                   </SignedOut>
                   <SignedIn>
-                    <div className="flex items-center gap-3">
-                      <Link
-                        href="/product"
-                        className="rounded-2xl border border-stone-300 px-3 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-400 hover:text-stone-900"
-                      >
-                        {content.auth.app}
-                      </Link>
+                    <div className="flex items-center gap-3">                      
                       <UserButton afterSignOutUrl="/" />
                     </div>
                   </SignedIn>
