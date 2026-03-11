@@ -19,7 +19,146 @@ export const localeLabels: Record<SiteLocale, string> = {
   es: 'ES',
 };
 
-export const siteContent = {
+type LandingContent = {
+  metaDescription: string;
+  brandTag: string;
+  brandStatement: string;
+  languageLabel: string;
+  auth: {
+    signIn: string;
+    app: string;
+    goToApp: string;
+  };
+  navigation: Array<{ label: string; href: string }>;
+  cta: {
+    orderWhatsapp: string;
+    exploreCakes: string;
+    visitInstagram: string;
+    contactToOrder: string;
+  };
+  whatsapp: {
+    defaultMessage: string;
+    variantPrefix: string;
+  };
+  hero: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    highlight: string;
+    stats: Array<{ label: string; value: string }>;
+    feature: {
+      eyebrow: string;
+      title: string;
+      description: string;
+    };
+    statementEyebrow: string;
+  };
+  valueStrip: {
+    items: Array<{ title: string; description: string }>;
+  };
+  socialProof: {
+    eyebrow: string;
+    title: string;
+    quote: string;
+    author: string;
+    role: string;
+    ratingLabel: string;
+    image: string;
+    imageAlt: string;
+  };
+  productsSection: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    selectionEyebrow: string;
+    variationsLabel: string;
+  };
+  products: Array<{
+    name: string;
+    description: string;
+    variants: string[];
+    image: string;
+    imageAlt: string;
+    whatsappMessage: string;
+    ctaLabel: string;
+  }>;
+  whyChoose?: unknown;
+  gallerySection: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    note: string;
+    items: Array<{ title: string; description: string; image: string; alt: string }>;
+  };
+  howToOrder: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    steps: Array<{ step: string; title: string; description: string }>;
+    stepLabel: string;
+  };
+  aboutSection: {
+    eyebrow: string;
+    title: string;
+    paragraphs: string[];
+    classicsIntro: string;
+    classics: string[];
+  };
+  brandPositioning?: unknown;
+  faqSection: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    items: Array<{ question: string; answer: string }>;
+  };
+  contactForm: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    cardTitle: string;
+    cardDescription: string;
+    submitLabel: string;
+    submittingLabel: string;
+    successMessage: string;
+    errorMessage: string;
+    requiredError: string;
+    fields: {
+      name: string;
+      email: string;
+      phone: string;
+      flavor: string;
+      topping: string;
+      deliveryDate: string;
+      deliveryTime: string;
+      observations: string;
+    };
+    placeholders: {
+      name: string;
+      email: string;
+      phone: string;
+      observations: string;
+    };
+    options: {
+      flavorPlaceholder: string;
+      toppingPlaceholder: string;
+      flavors: Array<{ value: string; label: string }>;
+      toppings: Array<{ value: string; label: string }>;
+    };
+  };
+  finalCta: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    buttonLabel: string;
+  };
+  footer: {
+    serviceNote: string;
+    whatsappLabel: string;
+    instagramLabel: string;
+  };
+};
+
+export const siteContent: Record<SiteLocale, LandingContent> = {
   'pt-BR': {
     metaDescription:
       'Bolos caseiros macios e irresistíveis. Peça bolo de cenoura ou bolo de chocolate da D’Lourdes Casa de Bolos pelo WhatsApp.',
@@ -47,6 +186,7 @@ export const siteContent = {
     whatsapp: {
       defaultMessage:
         "Olá! Gostaria de pedir um bolo da D'Lourdes Casa de Bolos.",
+      variantPrefix: 'Versão',
     },
     hero: {
       eyebrow: 'D’Lourdes Casa de Bolos',
@@ -65,7 +205,7 @@ export const siteContent = {
         description:
           'Escolha a versão que combina melhor com o seu momento e finalize o pedido em poucos toques.',
       },
-      statementEyebrow: 'Texto destaque',
+      statementEyebrow: 'Nossa Missão',
     },
     valueStrip: {
       items: [
@@ -135,30 +275,35 @@ export const siteContent = {
       title: 'Detalhes que abrem o apetite',
       description:
         'Cada bolo é preparado para oferecer uma experiência completa: sabor, aroma, textura e apresentação.',
-      note: 'Espaço pronto para novas fotos dos bolos e closes da textura.',
+      note: 'Galeria dos bolos da D’Lourdes.',
       items: [
         {
           title: 'Bolo de cenoura sem cobertura',
+          description: 'Um clássico leve e macio, perfeito para quem gosta do sabor da cenoura em destaque.',
           image: '/carrot-cake.png',
           alt: 'Bolo caseiro de cenoura sem cobertura de chocolate.',
         },
         {
           title: 'Bolo de cenoura com cobertura',
+          description: 'A combinação do bolo de cenoura com a cobertura de chocolate para um toque ainda mais especial.',
           image: '/carrot-cake-with-chocolate-topper.png',
           alt: 'Bolo caseiro de cenoura com cobertura de chocolate.',
         },
         {
           title: 'Bolo de chocolate sem cobertura',
+          description: 'Massa intensa e macia para quem prefere um bolo de chocolate puro e reconfortante.',
           image: '/chocolate-cake.png',
           alt: 'Bolo caseiro de chocolate sem cobertura de chocolate.',
         },
         {
           title: 'Bolo de chocolate com cobertura',
+          description: 'Uma versão mais marcante, com cobertura que reforça o sabor para os amantes de chocolate.',
           image: '/chocolate-cake-with-chocolate-topper.png',
           alt: 'Bolo caseiro de chocolate com cobertura de chocolate.',
         },
         {
           title: 'Fatia mostrando a textura',
+          description: 'Um close da textura macia e úmida que faz cada fatia parecer recém-saída da cozinha.',
           image: '/cake-chocolate-slice.png',
           alt: 'Fatia de bolo de chocolate mostrando a textura macia do bolo.',
         },
@@ -326,6 +471,7 @@ export const siteContent = {
     whatsapp: {
       defaultMessage:
         "Hello! I would like to order a cake from D'Lourdes Casa de Bolos.",
+      variantPrefix: 'Option',
     },
     hero: {
       eyebrow: 'Homemade carrot cake and homemade chocolate cake',
@@ -344,7 +490,7 @@ export const siteContent = {
         description:
           'A polished finish for celebrations, gifting, and coffee table moments.',
       },
-      statementEyebrow: 'Brand statement',
+      statementEyebrow: 'Our Mission',
     },
     valueStrip: {
       items: [
@@ -441,30 +587,35 @@ export const siteContent = {
       title: 'A gallery ready to showcase the products and the brand atmosphere.',
       description:
         'The section now uses real cake images and is ready for future updates with new angles, close-ups, and table compositions.',
-      note: 'Replace or expand the gallery whenever new brand photography becomes available.',
+      note: 'D’Lourdes cake gallery.',
       items: [
         {
           title: 'Carrot cake without topping',
+          description: 'A soft classic that lets the carrot cake flavor shine on its own.',
           image: '/carrot-cake.png',
           alt: 'Homemade carrot cake without chocolate topping.',
         },
         {
           title: 'Carrot cake with chocolate topping',
+          description: 'The comforting carrot cake base finished with chocolate for an even more indulgent version.',
           image: '/carrot-cake-with-chocolate-topper.png',
           alt: 'Homemade carrot cake with chocolate topping.',
         },
         {
           title: 'Chocolate cake without topping',
+          description: 'A rich and soft chocolate cake for anyone who prefers a pure, classic chocolate profile.',
           image: '/chocolate-cake.png',
           alt: 'Homemade chocolate cake without chocolate topping.',
         },
         {
           title: 'Chocolate cake with chocolate topping',
+          description: 'A deeper chocolate experience with a finish that makes every slice feel more generous.',
           image: '/chocolate-cake-with-chocolate-topper.png',
           alt: 'Homemade chocolate cake with chocolate topping.',
         },
         {
           title: 'Slice showing texture',
+          description: 'A close-up of the soft texture that gives the cake its homemade, freshly baked appeal.',
           image: '/cake-chocolate-slice.png',
           alt: 'Chocolate cake slice showing the soft cake texture.',
         },
@@ -640,6 +791,7 @@ export const siteContent = {
     whatsapp: {
       defaultMessage:
         "¡Hola! Me gustaría pedir un pastel de D'Lourdes Casa de Bolos.",
+      variantPrefix: 'Versión',
     },
     hero: {
       eyebrow: 'Pastel casero de zanahoria y pastel casero de chocolate',
@@ -658,7 +810,7 @@ export const siteContent = {
         description:
           'Un acabado elegante para celebraciones, regalos y momentos alrededor del café.',
       },
-      statementEyebrow: 'Esencia de la marca',
+      statementEyebrow: 'Nuestra Misión',
     },
     valueStrip: {
       items: [
@@ -755,30 +907,35 @@ export const siteContent = {
       title: 'Una galería lista para destacar los productos y la atmósfera de la marca.',
       description:
         'La sección ahora usa imágenes reales de los pasteles y queda preparada para futuras actualizaciones con nuevos ángulos, acercamientos y composiciones de mesa.',
-      note: 'Sustituye o amplía la galería siempre que haya nuevas fotos de la marca.',
+      note: 'Galería de pasteles de D’Lourdes.',
       items: [
         {
           title: 'Pastel de zanahoria sin cobertura',
+          description: 'Un clásico suave y equilibrado que destaca el sabor del pastel de zanahoria.',
           image: '/carrot-cake.png',
           alt: 'Pastel casero de zanahoria sin cobertura de chocolate.',
         },
         {
           title: 'Pastel de zanahoria con cobertura',
+          description: 'La combinación del pastel de zanahoria con cobertura de chocolate para un toque todavía más especial.',
           image: '/carrot-cake-with-chocolate-topper.png',
           alt: 'Pastel casero de zanahoria con cobertura de chocolate.',
         },
         {
           title: 'Pastel de chocolate sin cobertura',
+          description: 'Una miga intensa y suave para quienes prefieren un pastel de chocolate clásico y reconfortante.',
           image: '/chocolate-cake.png',
           alt: 'Pastel casero de chocolate sin cobertura de chocolate.',
         },
         {
           title: 'Pastel de chocolate con cobertura',
+          description: 'Una versión más intensa, con cobertura que refuerza el sabor para los amantes del chocolate.',
           image: '/chocolate-cake-with-chocolate-topper.png',
           alt: 'Pastel casero de chocolate con cobertura de chocolate.',
         },
         {
           title: 'Porción mostrando la textura',
+          description: 'Un acercamiento a la textura suave y húmeda que hace cada porción aún más apetecible.',
           image: '/cake-chocolate-slice.png',
           alt: 'Porción de pastel de chocolate mostrando la textura suave del pastel.',
         },

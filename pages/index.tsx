@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -68,6 +68,18 @@ export default function Home() {
   const [submitState, setSubmitState] = useState<
     'idle' | 'submitting' | 'success' | 'error' | 'validation'
   >('idle');
+  const [selectedVariants, setSelectedVariants] = useState<Record<string, string>>(
+    () =>
+      Object.fromEntries(
+        content.products.map((product) => [product.name, product.variants[0]])
+      )
+  );
+
+  useEffect(() => {
+    setSelectedVariants(
+      Object.fromEntries(content.products.map((product) => [product.name, product.variants[0]]))
+    );
+  }, [content.products]);
 
   const handleFieldChange = (field: keyof ContactFormState, value: string) => {
     setFormState((current) => ({
@@ -77,6 +89,13 @@ export default function Home() {
     if (submitState !== 'idle') {
       setSubmitState('idle');
     }
+  };
+
+  const handleVariantChange = (productName: string, variant: string) => {
+    setSelectedVariants((current) => ({
+      ...current,
+      [productName]: variant,
+    }));
   };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -428,9 +447,9 @@ export default function Home() {
               {content.products.map((product) => (
                 <article
                   key={product.name}
-                  className="overflow-hidden rounded-[2rem] border border-stone-200 bg-white shadow-[0_22px_60px_rgba(91,67,50,0.08)]"
+                  className="h-full overflow-hidden rounded-[2rem] border border-stone-200 bg-white shadow-[0_22px_60px_rgba(91,67,50,0.08)]"
                 >
-                  <div className="grid gap-0 md:grid-cols-[0.95fr_1.05fr]">
+                  <div className="grid h-full gap-0 md:grid-cols-[0.95fr_1.05fr]">
                     <div className="bg-stone-100 p-5">
                       <Image
                         src={product.image}
@@ -459,18 +478,37 @@ export default function Home() {
                           {product.variants.map((variant) => (
                             <li
                               key={variant}
-                              className="flex items-center gap-3 rounded-2xl bg-stone-50 px-4 py-3 text-sm text-stone-800"
+                              className="list-none"
                             >
-                              <span className="h-2.5 w-2.5 rounded-full bg-amber-700" />
-                              {variant}
+                              <button
+                                type="button"
+                                onClick={() => handleVariantChange(product.name, variant)}
+                                aria-pressed={selectedVariants[product.name] === variant}
+                                className={`flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm transition ${
+                                  selectedVariants[product.name] === variant
+                                    ? 'bg-stone-900 text-amber-50'
+                                    : 'bg-stone-50 text-stone-800 hover:bg-stone-100'
+                                }`}
+                              >
+                                <span
+                                  className={`h-2.5 w-2.5 rounded-full ${
+                                    selectedVariants[product.name] === variant
+                                      ? 'bg-amber-200'
+                                      : 'bg-amber-700'
+                                  }`}
+                                />
+                                {variant}
+                              </button>
                             </li>
                           ))}
                         </ul>
                       </div>
 
-                      <div className="mt-8">
+                      <div className="mt-8 md:mt-auto">
                         <a
-                          href={buildWhatsAppLink(product.whatsappMessage)}
+                          href={buildWhatsAppLink(
+                            `${product.whatsappMessage} ${content.whatsapp.variantPrefix}: ${selectedVariants[product.name]}.`
+                          )}
                           target="_blank"
                           rel="noreferrer"
                           className="inline-flex rounded-full bg-stone-900 px-5 py-3 text-sm font-semibold text-amber-50 transition hover:bg-stone-800"
@@ -496,7 +534,7 @@ export default function Home() {
               {content.gallerySection.items.map((item) => (
                 <figure
                   key={item.title}
-                  className="overflow-hidden rounded-[1.75rem] border border-stone-200 bg-white shadow-sm"
+                  className="flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-stone-200 bg-white shadow-sm"
                 >
                   <div className="bg-stone-100 p-4">
                     <Image
@@ -507,10 +545,10 @@ export default function Home() {
                       className="h-auto w-full rounded-[1.25rem] object-cover"
                     />
                   </div>
-                  <figcaption className="px-5 pb-5 pt-2">
+                  <figcaption className="flex flex-1 flex-col px-5 pb-5 pt-2">
                     <p className="text-base font-semibold text-stone-900">{item.title}</p>
                     <p className="mt-2 text-sm leading-6 text-stone-600">
-                      {content.gallerySection.note}
+                      {item.description}
                     </p>
                   </figcaption>
                 </figure>
