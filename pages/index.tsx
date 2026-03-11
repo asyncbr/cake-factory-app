@@ -142,39 +142,22 @@ export default function Home() {
 
       <main className="min-h-screen bg-[linear-gradient(180deg,#fff9f1_0%,#f4ecdf_35%,#fffdf9_100%)] text-stone-900">
         <div className="mx-auto max-w-7xl px-4 pb-16 pt-6 sm:px-6 lg:px-8">
-          <header className="rounded-full border border-stone-200/80 bg-white/80 px-4 py-3 shadow-sm backdrop-blur sm:px-6">
+          <header className="rounded-[2rem] border border-stone-200/80 bg-white/80 px-4 py-4 shadow-sm backdrop-blur sm:rounded-[2.25rem] sm:px-6">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-              <div className="flex items-center justify-between gap-4">
-                <a href="#top" className="min-w-0">
+              <div className="flex items-start justify-between gap-4 sm:items-center">
+                <a href="#top" className="min-w-0 flex-1">
                   <p className="text-xs font-semibold uppercase tracking-[0.35em] text-amber-800/70">
                     {content.brandTag}
                   </p>
-                  <p className="truncate text-lg font-semibold text-stone-900 sm:text-xl">
+                  <p className="mt-2 text-xl font-semibold leading-tight text-stone-900 sm:text-xl">
                     {siteConfig.brandName}
                   </p>
                 </a>
 
-                <div className="flex items-center gap-3 lg:hidden">
-                  <div className="hidden items-center gap-1 rounded-full border border-stone-200 bg-stone-50/80 p-1 sm:flex">
-                    {supportedLocales.map((option) => (
-                      <Link
-                        key={option}
-                        href={router.asPath}
-                        locale={option}
-                        aria-pressed={locale === option}
-                        className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
-                          locale === option
-                            ? 'bg-stone-900 text-amber-50'
-                            : 'text-stone-600 hover:text-stone-900'
-                        }`}
-                      >
-                        {localeLabels[option]}
-                      </Link>
-                    ))}
-                  </div>
+                <div className="flex shrink-0 items-center gap-2 lg:hidden">
                   <SignedOut>
                     <SignInButton mode="modal">
-                      <button className="rounded-full border border-stone-300 px-3 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-400 hover:text-stone-900">
+                      <button className="rounded-2xl border border-stone-300 px-3 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-400 hover:text-stone-900">
                         {content.auth.signIn}
                       </button>
                     </SignInButton>
@@ -183,7 +166,7 @@ export default function Home() {
                     <div className="flex items-center gap-3">
                       <Link
                         href="/product"
-                        className="rounded-full border border-stone-300 px-3 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-400 hover:text-stone-900"
+                        className="rounded-2xl border border-stone-300 px-3 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-400 hover:text-stone-900"
                       >
                         {content.auth.app}
                       </Link>
@@ -195,7 +178,7 @@ export default function Home() {
 
               <nav
                 aria-label="Primary"
-                className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-stone-700"
+                className="hidden items-center gap-x-5 gap-y-2 text-sm text-stone-700 lg:flex lg:flex-wrap"
               >
                 {content.navigation.map((item) => (
                   <a
@@ -207,6 +190,50 @@ export default function Home() {
                   </a>
                 ))}
               </nav>
+
+              <div className="grid gap-3 lg:hidden">
+                <div className="flex flex-wrap items-center gap-2">
+                  {supportedLocales.map((option) => (
+                    <Link
+                      key={option}
+                      href={router.asPath}
+                      locale={option}
+                      aria-pressed={locale === option}
+                      className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                        locale === option
+                          ? 'bg-stone-900 text-amber-50'
+                          : 'border border-stone-200 bg-stone-50/80 text-stone-600 hover:text-stone-900'
+                      }`}
+                    >
+                      {localeLabels[option]}
+                    </Link>
+                  ))}
+                </div>
+
+                <nav
+                  aria-label="Primary mobile"
+                  className="grid grid-cols-2 gap-2 text-sm text-stone-700"
+                >
+                  {content.navigation.map((item) => (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      className="rounded-2xl border border-stone-200 bg-stone-50/70 px-3 py-2.5 text-center transition hover:text-stone-950"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </nav>
+
+                <a
+                  href={primaryWhatsAppLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-2xl bg-stone-900 px-5 py-3 text-center text-sm font-semibold text-amber-50 transition hover:bg-stone-800"
+                >
+                  {content.cta.orderWhatsapp}
+                </a>
+              </div>
 
               <div className="hidden items-center gap-3 lg:flex">
                 <div className="flex items-center gap-2">
@@ -269,7 +296,7 @@ export default function Home() {
               <p className="mb-4 text-sm font-semibold uppercase tracking-[0.32em] text-amber-800/75">
                 {content.hero.eyebrow}
               </p>
-              <h1 className="max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-stone-950 sm:text-5xl lg:text-6xl">
+              <h1 className="max-w-3xl text-4xl font-semibold leading-[1.05] tracking-tight text-stone-950 sm:text-5xl lg:text-6xl">
                 {content.hero.title}
               </h1>
               <p className="mt-6 max-w-2xl text-base leading-8 text-stone-700 sm:text-lg">
