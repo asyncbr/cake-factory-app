@@ -40,10 +40,12 @@ function SectionHeading({
 
 type ContactFormState = {
   name: string;
+  email: string;
   phone: string;
   flavor: string;
   topping: string;
-  deliveryDateTime: string;
+  deliveryDate: string;
+  deliveryTime: string;
   observations: string;
 };
 
@@ -55,10 +57,12 @@ export default function Home() {
   const primaryWhatsAppLink = buildWhatsAppLink(content.whatsapp.defaultMessage);
   const [formState, setFormState] = useState<ContactFormState>({
     name: '',
+    email: '',
     phone: '',
     flavor: '',
     topping: '',
-    deliveryDateTime: '',
+    deliveryDate: '',
+    deliveryTime: '',
     observations: '',
   });
   const [submitState, setSubmitState] = useState<
@@ -80,10 +84,12 @@ export default function Home() {
 
     if (
       !formState.name.trim() ||
+      !formState.email.trim() ||
       !formState.phone.trim() ||
       !formState.flavor.trim() ||
       !formState.topping.trim() ||
-      !formState.deliveryDateTime.trim()
+      !formState.deliveryDate.trim() ||
+      !formState.deliveryTime.trim()
     ) {
       setSubmitState('validation');
       return;
@@ -110,10 +116,12 @@ export default function Home() {
       setSubmitState('success');
       setFormState({
         name: '',
+        email: '',
         phone: '',
         flavor: '',
         topping: '',
-        deliveryDateTime: '',
+        deliveryDate: '',
+        deliveryTime: '',
         observations: '',
       });
     } catch (error) {
@@ -567,6 +575,18 @@ export default function Home() {
                   </label>
 
                   <label className="flex flex-col gap-2 text-sm font-medium text-stone-800">
+                    {content.contactForm.fields.email}
+                    <input
+                      type="email"
+                      value={formState.email}
+                      onChange={(event) => handleFieldChange('email', event.target.value)}
+                      placeholder={content.contactForm.placeholders.email}
+                      className="rounded-2xl border border-stone-300 bg-white px-4 py-3 text-sm text-stone-900 outline-none transition focus:border-stone-500"
+                      required
+                    />
+                  </label>
+
+                  <label className="flex flex-col gap-2 text-sm font-medium text-stone-800">
                     {content.contactForm.fields.phone}
                     <input
                       type="tel"
@@ -614,19 +634,29 @@ export default function Home() {
                 </div>
 
                 <div className="mt-5 grid gap-5">
-                  <label className="flex flex-col gap-2 text-sm font-medium text-stone-800">
-                    {content.contactForm.fields.deliveryDateTime}
-                    <input
-                      type="text"
-                      value={formState.deliveryDateTime}
-                      onChange={(event) =>
-                        handleFieldChange('deliveryDateTime', event.target.value)
-                      }
-                      placeholder={content.contactForm.placeholders.deliveryDateTime}
-                      className="rounded-2xl border border-stone-300 bg-white px-4 py-3 text-sm text-stone-900 outline-none transition focus:border-stone-500"
-                      required
-                    />
-                  </label>
+                  <div className="grid gap-5 md:grid-cols-2">
+                    <label className="flex flex-col gap-2 text-sm font-medium text-stone-800">
+                      {content.contactForm.fields.deliveryDate}
+                      <input
+                        type="date"
+                        value={formState.deliveryDate}
+                        onChange={(event) => handleFieldChange('deliveryDate', event.target.value)}
+                        className="rounded-2xl border border-stone-300 bg-white px-4 py-3 text-sm text-stone-900 outline-none transition focus:border-stone-500"
+                        required
+                      />
+                    </label>
+
+                    <label className="flex flex-col gap-2 text-sm font-medium text-stone-800">
+                      {content.contactForm.fields.deliveryTime}
+                      <input
+                        type="time"
+                        value={formState.deliveryTime}
+                        onChange={(event) => handleFieldChange('deliveryTime', event.target.value)}
+                        className="rounded-2xl border border-stone-300 bg-white px-4 py-3 text-sm text-stone-900 outline-none transition focus:border-stone-500"
+                        required
+                      />
+                    </label>
+                  </div>
 
                   <label className="flex flex-col gap-2 text-sm font-medium text-stone-800">
                     {content.contactForm.fields.observations}

@@ -4,10 +4,12 @@ import { siteConfig } from '@/lib/site';
 
 type ContactPayload = {
   name?: string;
+  email?: string;
   phone?: string;
   flavor?: string;
   topping?: string;
-  deliveryDateTime?: string;
+  deliveryDate?: string;
+  deliveryTime?: string;
   observations?: string;
   locale?: string;
 };
@@ -18,6 +20,10 @@ function isNonEmptyString(value: unknown): value is string {
 
 function sanitize(value: unknown) {
   return typeof value === 'string' ? value.trim() : '';
+}
+
+function isValidEmail(value: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
 export default async function handler(
@@ -31,19 +37,24 @@ export default async function handler(
 
   const body = (req.body ?? {}) as ContactPayload;
   const name = sanitize(body.name);
+  const email = sanitize(body.email);
   const phone = sanitize(body.phone);
   const flavor = sanitize(body.flavor);
   const topping = sanitize(body.topping);
-  const deliveryDateTime = sanitize(body.deliveryDateTime);
+  const deliveryDate = sanitize(body.deliveryDate);
+  const deliveryTime = sanitize(body.deliveryTime);
   const observations = sanitize(body.observations);
   const locale = sanitize(body.locale) || 'pt-BR';
 
   if (
     !isNonEmptyString(name) ||
+    !isNonEmptyString(email) ||
+    !isValidEmail(email) ||
     !isNonEmptyString(phone) ||
     !isNonEmptyString(flavor) ||
     !isNonEmptyString(topping) ||
-    !isNonEmptyString(deliveryDateTime)
+    !isNonEmptyString(deliveryDate) ||
+    !isNonEmptyString(deliveryTime)
   ) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
@@ -75,10 +86,12 @@ export default async function handler(
   const subject = `Novo contato do site - ${name}`;
   const text = [
     `Nome: ${name}`,
+    `Email: ${email}`,
     `Telefone: ${phone}`,
     `Sabor: ${flavor}`,
     `Cobertura: ${topping}`,
-    `Data e horario: ${deliveryDateTime}`,
+    `Data: ${deliveryDate}`,
+    `Horario: ${deliveryTime}`,
     `Locale: ${locale}`,
     `Observacoes: ${observations || '-'}`,
   ].join('\n');
@@ -87,10 +100,12 @@ export default async function handler(
     <div style="font-family: Arial, Helvetica, sans-serif; color: #2a2019; line-height: 1.6;">
       <h2 style="margin-bottom: 16px;">Novo contato do site</h2>
       <p><strong>Nome:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
       <p><strong>Telefone:</strong> ${phone}</p>
       <p><strong>Sabor:</strong> ${flavor}</p>
       <p><strong>Cobertura:</strong> ${topping}</p>
-      <p><strong>Data e horario:</strong> ${deliveryDateTime}</p>
+      <p><strong>Data:</strong> ${deliveryDate}</p>
+      <p><strong>Horario:</strong> ${deliveryTime}</p>
       <p><strong>Locale:</strong> ${locale}</p>
       <p><strong>Observacoes:</strong><br/>${observations || '-'}</p>
     </div>
@@ -99,7 +114,7 @@ export default async function handler(
   await transporter.sendMail({
     from: smtpFrom,
     to: recipient,
-    replyTo: smtpFrom,
+    replyTo: email,
     subject,
     text,
     html,

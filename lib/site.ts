@@ -255,16 +255,18 @@ export const siteContent = {
       requiredError: 'Preencha os campos obrigatórios antes de enviar.',
       fields: {
         name: 'Nome',
+        email: 'E-mail',
         phone: 'Telefone',
         flavor: 'Sabor',
         topping: 'Cobertura',
-        deliveryDateTime: 'Data e horário de entrega/retirada',
+        deliveryDate: 'Data de entrega/retirada',
+        deliveryTime: 'Horário de entrega/retirada',
         observations: 'Observações',
       },
       placeholders: {
         name: 'Seu nome completo',
+        email: 'voce@exemplo.com',
         phone: '(11) 99999-9999',
-        deliveryDateTime: 'Ex.: 22/03/2026 às 15h',
         observations: 'Detalhes extras, preferência de horário ou informações importantes.',
       },
       options: {
@@ -527,16 +529,18 @@ export const siteContent = {
       requiredError: 'Fill in the required fields before sending.',
       fields: {
         name: 'Name',
+        email: 'Email',
         phone: 'Phone',
         flavor: 'Flavor',
         topping: 'Cake topping',
-        deliveryDateTime: 'Delivery or pickup date and time',
+        deliveryDate: 'Delivery or pickup date',
+        deliveryTime: 'Delivery or pickup time',
         observations: 'Observations',
       },
       placeholders: {
         name: 'Your full name',
+        email: 'you@example.com',
         phone: '+55 11 99999-9999',
-        deliveryDateTime: 'Example: 03/22/2026 at 3:00 PM',
         observations: 'Extra details, preferred time, or important notes.',
       },
       options: {
@@ -799,16 +803,18 @@ export const siteContent = {
       requiredError: 'Completa los campos obligatorios antes de enviar.',
       fields: {
         name: 'Nombre',
+        email: 'Correo electrónico',
         phone: 'Teléfono',
         flavor: 'Sabor',
         topping: 'Cobertura',
-        deliveryDateTime: 'Fecha y hora de entrega o recogida',
+        deliveryDate: 'Fecha de entrega o recogida',
+        deliveryTime: 'Hora de entrega o recogida',
         observations: 'Observaciones',
       },
       placeholders: {
         name: 'Tu nombre completo',
+        email: 'tu@ejemplo.com',
         phone: '+55 11 99999-9999',
-        deliveryDateTime: 'Ej.: 22/03/2026 a las 15:00',
         observations: 'Detalles extra, horario preferido o información importante.',
       },
       options: {
