@@ -27,6 +27,7 @@ export default class MyDocument extends Document<Props> {
     return (
       <Html lang={locale}>
         <Head>
+          <link rel="icon" href="/favicon.ico" sizes="any" />
           <meta
             name="description"
             content="D'Lourdes Casa de Bolos offers elegant homemade carrot cake and chocolate cake for warm, memorable moments."
