@@ -4,8 +4,10 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <title>Business Idea Generator</title>
-        <meta name="description" content="AI-powered business idea generation" />
+        <meta
+          name="description"
+          content="D'Lourdes Casa de Bolos offers elegant homemade carrot cake and chocolate cake for warm, memorable moments."
+        />
       </Head>
       <body>
         <Main />
