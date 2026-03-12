@@ -1,23 +1,24 @@
 import type { GetServerSideProps } from 'next';
-import { siteConfig, supportedLocales } from '@/lib/site';
+import { getLocalizedPath, siteConfig } from '@/lib/site';
+import { i18n } from '@/src/i18n/config';
 
 function buildUrl(path: string) {
   return path ? `${siteConfig.siteUrl}${path}` : siteConfig.siteUrl;
 }
 
 function buildSitemap() {
-  const locales = supportedLocales.map((locale) => ({
-    locale,
-    path: locale === 'pt-BR' ? '' : `/${locale}`,
-  }));
+  const localizedPaths = i18n.locales.flatMap((locale) => [
+    getLocalizedPath(locale),
+    getLocalizedPath(locale, '/products'),
+  ]);
 
-  const urls = locales
+  const urls = localizedPaths
     .map(
-      ({ path }) => `
+      (path) => `
   <url>
     <loc>${buildUrl(path)}</loc>
     <changefreq>weekly</changefreq>
-    <priority>${path ? '0.8' : '1.0'}</priority>
+    <priority>${path.endsWith('/products') ? '0.8' : '1.0'}</priority>
   </url>`
     )
     .join('');

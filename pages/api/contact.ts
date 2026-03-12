@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
 import { siteConfig } from '@/lib/site';
+import { i18n, isLocale } from '@/src/i18n/config';
 
 type ContactPayload = {
   name?: string;
@@ -44,7 +45,8 @@ export default async function handler(
   const deliveryDate = sanitize(body.deliveryDate);
   const deliveryTime = sanitize(body.deliveryTime);
   const observations = sanitize(body.observations);
-  const locale = sanitize(body.locale) || 'pt-BR';
+  const localeValue = sanitize(body.locale) || i18n.defaultLocale;
+  const locale = isLocale(localeValue) ? localeValue : i18n.defaultLocale;
 
   if (
     !isNonEmptyString(name) ||
