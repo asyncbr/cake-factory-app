@@ -12,6 +12,7 @@ import {
 import {
   buildWhatsAppLink,
   getLocalizedPath,
+  getSocialLink,
   siteConfig,
   type SocialLinkId,
 } from '@/lib/site';
@@ -99,6 +100,18 @@ function getSocialLabel(contact: Dictionary['contact'], id: SocialLinkId) {
   }
 }
 
+function getSocialHandle(href: string) {
+  try {
+    const url = new URL(href);
+    const pathname = url.pathname.replace(/\/+$/, '');
+    const lastSegment = pathname.split('/').filter(Boolean).pop();
+
+    return lastSegment ? `@${lastSegment}` : url.hostname.replace('www.', '');
+  } catch {
+    return href;
+  }
+}
+
 export function LandingPage({
   locale,
   dictionary,
@@ -129,6 +142,7 @@ export function LandingPage({
   }));
   const primaryWhatsAppLink = buildWhatsAppLink(dictionary.contact.whatsappMessage);
   const socialLinks = Array.isArray(siteConfig.socialLinks) ? siteConfig.socialLinks : [];
+  const instagramLink = getSocialLink('instagram');
   const canonicalUrl = `${siteConfig.siteUrl}${getLocalizedPath(locale)}`;
   const alternateLocales = i18n.locales.map((item) => ({
     locale: item,
@@ -144,7 +158,7 @@ export function LandingPage({
     telephone: '+55 11 95831-6072',
     email: siteConfig.contactEmail,
     servesCuisine: 'Bakery',
-    sameAs: [siteConfig.instagramUrl],
+    sameAs: socialLinks.map((socialLink) => socialLink.href),
     areaServed: 'Sao Paulo, Brazil',
     description: dictionary.meta.homeDescription,
   };
@@ -925,7 +939,7 @@ export function LandingPage({
                   {content.finalCta.buttonLabel}
                 </a>
                 <a
-                  href={siteConfig.instagramUrl}
+                  href={instagramLink?.href ?? primaryWhatsAppLink}
                   target="_blank"
                   rel="noreferrer"
                   className="rounded-full border border-stone-300 px-6 py-3 text-center text-sm font-semibold text-stone-800 transition hover:border-stone-400 hover:bg-white/70"
@@ -979,6 +993,9 @@ export function LandingPage({
                     >
                       {siteConfig.contactEmail}
                     </a>
+                    {instagramLink && (
+                      <span className="text-stone-500">{getSocialHandle(instagramLink.href)}</span>
+                    )}
                   </div>
                 </div>
               </div>
