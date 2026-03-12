@@ -11,6 +11,7 @@ export const siteConfig = {
   instagramUrl: 'https://instagram.com/dlourdes.bolos',
   whatsappNumber: '5511958316072',
   contactEmail: 'dlourdesoficial@gmail.com',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://cake-factory-app.vercel.app',
 } as const;
 
 export const localeLabels: Record<SiteLocale, string> = {

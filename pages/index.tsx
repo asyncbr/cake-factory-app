@@ -54,6 +54,36 @@ export default function Home() {
   const locale: SiteLocale = isSiteLocale(routerLocale) ? routerLocale : 'pt-BR';
   const content = siteContent[locale];
   const primaryWhatsAppLink = buildWhatsAppLink(content.whatsapp.defaultMessage);
+  const localePath = locale === 'pt-BR' ? '' : `/${locale}`;
+  const canonicalUrl = `${siteConfig.siteUrl}${localePath}`;
+  const alternateLocales = supportedLocales.map((item) => ({
+    locale: item,
+    href: `${siteConfig.siteUrl}${item === 'pt-BR' ? '' : `/${item}`}`,
+  }));
+  const seoTitle =
+    locale === 'pt-BR'
+      ? `${siteConfig.brandName} | Bolos caseiros macios e irresistíveis`
+      : locale === 'es'
+        ? `${siteConfig.brandName} | Pasteles caseros suaves e irresistibles`
+        : `${siteConfig.brandName} | Soft and irresistible homemade cakes`;
+  const seoImage = `${siteConfig.siteUrl}/cake-social-proof.png`;
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Bakery',
+    name: siteConfig.brandName,
+    image: [
+      `${siteConfig.siteUrl}/carrot-cake.png`,
+      `${siteConfig.siteUrl}/chocolate-cake.png`,
+      seoImage,
+    ],
+    url: canonicalUrl,
+    telephone: '+55 11 95831-6072',
+    email: siteConfig.contactEmail,
+    servesCuisine: 'Bakery',
+    sameAs: [siteConfig.instagramUrl],
+    areaServed: 'Sao Paulo, Brazil',
+    description: content.metaDescription,
+  };
   const [formState, setFormState] = useState<ContactFormState>({
     name: '',
     email: '',
@@ -151,10 +181,39 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>{siteConfig.brandName}</title>
+        <title>{seoTitle}</title>
+        <meta name="description" content={content.metaDescription} />
         <meta
-          name="description"
-          content={content.metaDescription}
+          name="keywords"
+          content="bolo caseiro, bolo de cenoura, bolo de chocolate, casa de bolos, encomenda de bolo, D'Lourdes Casa de Bolos"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content={siteConfig.brandName} />
+        <link rel="canonical" href={canonicalUrl} />
+        {alternateLocales.map((item) => (
+          <link
+            key={item.locale}
+            rel="alternate"
+            hrefLang={item.locale}
+            href={item.href}
+          />
+        ))}
+        <link rel="alternate" hrefLang="x-default" href={siteConfig.siteUrl} />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={siteConfig.brandName} />
+        <meta property="og:title" content={seoTitle} />
+        <meta property="og:description" content={content.metaDescription} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={seoImage} />
+        <meta property="og:image:alt" content={content.socialProof.imageAlt} />
+        <meta property="og:locale" content={locale} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={seoTitle} />
+        <meta name="twitter:description" content={content.metaDescription} />
+        <meta name="twitter:image" content={seoImage} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </Head>
 
