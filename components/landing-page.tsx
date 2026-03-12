@@ -9,7 +9,12 @@ import {
   getProductPrice,
   productCatalog,
 } from '@/lib/products';
-import { buildWhatsAppLink, getLocalizedPath, siteConfig } from '@/lib/site';
+import {
+  buildWhatsAppLink,
+  getLocalizedPath,
+  siteConfig,
+  type SocialLinkId,
+} from '@/lib/site';
 import { i18n, type Locale } from '@/src/i18n/config';
 import type { Dictionary } from '@/src/i18n/get-dictionary';
 
@@ -79,6 +84,21 @@ function formatPrice(locale: Locale, price: number) {
 const featuredProducts = getFeaturedProducts();
 const orderedVariants = getOrderedVariants();
 
+function getSocialLabel(contact: Dictionary['contact'], id: SocialLinkId) {
+  switch (id) {
+    case 'instagram':
+      return contact.instagramLabel;
+    case 'facebook':
+      return 'Facebook';
+    case 'x':
+      return 'X';
+    case 'tiktok':
+      return 'TikTok';
+    default:
+      return id;
+  }
+}
+
 export function LandingPage({
   locale,
   dictionary,
@@ -108,6 +128,7 @@ export function LandingPage({
     label: catalogProducts[product.id].formLabel,
   }));
   const primaryWhatsAppLink = buildWhatsAppLink(dictionary.contact.whatsappMessage);
+  const socialLinks = Array.isArray(siteConfig.socialLinks) ? siteConfig.socialLinks : [];
   const canonicalUrl = `${siteConfig.siteUrl}${getLocalizedPath(locale)}`;
   const alternateLocales = i18n.locales.map((item) => ({
     locale: item,
@@ -916,42 +937,69 @@ export function LandingPage({
           </section>
 
           <footer className="pt-12">
-            <div className="flex flex-col gap-6 border-t border-stone-200/80 py-8 md:flex-row md:items-end md:justify-between">
-              <div className="max-w-xl">
-                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-800/70">
-                  {siteConfig.brandName}
-                </p>
-                <p className="mt-3 text-base text-stone-700">{content.brandStatement}</p>
-                <p className="mt-2 text-sm text-stone-600">{content.footer.serviceNote}</p>
+            <div className="rounded-[2rem] border border-stone-200/80 bg-white/85 px-6 py-8 shadow-sm sm:px-8">
+              <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+                <div className="max-w-xl">
+                  <p className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-800/70">
+                    {siteConfig.brandName}
+                  </p>
+                  <p className="mt-4 max-w-md text-sm leading-7 text-stone-700">
+                    {content.footer.description}
+                  </p>
+                  <p className="mt-3 text-sm text-stone-600">{content.footer.serviceNote}</p>
+                </div>
+
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.24em] text-amber-800/70">
+                    {content.footer.socialTitle}
+                  </p>
+                  <div className="mt-4 grid gap-3 text-sm text-stone-700">
+                    <a
+                      href={primaryWhatsAppLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="transition hover:text-stone-950"
+                    >
+                      {dictionary.contact.whatsappLabel}
+                    </a>
+                    {socialLinks.map((socialLink) => (
+                      <a
+                        key={socialLink.id}
+                        href={socialLink.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="transition hover:text-stone-950"
+                      >
+                        {getSocialLabel(dictionary.contact, socialLink.id)}
+                      </a>
+                    ))}
+                    <a
+                      href={`mailto:${siteConfig.contactEmail}`}
+                      className="transition hover:text-stone-950"
+                    >
+                      {siteConfig.contactEmail}
+                    </a>
+                  </div>
+                </div>
               </div>
 
-              <div className="space-y-2 text-sm text-stone-700">
-                <p>
-                  <span className="font-semibold text-stone-900">
-                    {dictionary.contact.whatsappLabel}:
-                  </span>{' '}
-                  <a
-                    href={primaryWhatsAppLink}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="transition hover:text-stone-950"
-                  >
-                    {content.cta.contactToOrder}
-                  </a>
-                </p>
-                <p>
-                  <span className="font-semibold text-stone-900">
-                    {dictionary.contact.instagramLabel}:
-                  </span>{' '}
-                  <a
-                    href={siteConfig.instagramUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="transition hover:text-stone-950"
-                  >
-                    {siteConfig.instagramHandle}
-                  </a>
-                </p>
+              <div className="mt-8 flex flex-col gap-4 border-t border-stone-200/80 pt-5 text-sm text-stone-600 lg:flex-row lg:items-center lg:justify-between">
+                <p>{content.footer.rights}</p>
+                <div className="flex flex-wrap items-center gap-2">
+                  {i18n.locales.map((option) => (
+                    <Link
+                      key={option}
+                      href={getLocalizedPath(option)}
+                      className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                        locale === option
+                          ? 'bg-stone-900 text-amber-50'
+                          : 'border border-stone-200 bg-stone-50/80 text-stone-600 hover:text-stone-900'
+                      }`}
+                    >
+                      {dictionary.navbar.locales[option]}
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
           </footer>

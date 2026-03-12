@@ -229,6 +229,9 @@ const esDictionary = {
       buttonLabel: 'Hacer pedido por WhatsApp',
     },
     footer: {
+      description: 'Pasteles caseros preparados con cuidado, sabor y una presentación cálida para momentos especiales.',
+      socialTitle: 'Redes sociales',
+      rights: 'D’Lourdes Casa de Bolos. Pedidos por encargo con atención directa.',
       serviceNote: 'Pedidos por encargo.',
       pickupNote: 'La entrega o recogida se coordina durante la atención.',
     },

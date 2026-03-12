@@ -229,6 +229,9 @@ const ptBRDictionary = {
       buttonLabel: 'Fazer pedido pelo WhatsApp',
     },
     footer: {
+      description: 'Bolos caseiros preparados com cuidado, sabor e uma apresentação acolhedora para momentos especiais.',
+      socialTitle: 'Redes sociais',
+      rights: 'D’Lourdes Casa de Bolos. Pedidos sob encomenda com atendimento direto.',
       serviceNote: 'Pedidos sob encomenda.',
       pickupNote: 'Entrega e retirada combinadas durante o atendimento.',
     },

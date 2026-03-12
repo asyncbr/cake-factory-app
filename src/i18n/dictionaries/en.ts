@@ -227,6 +227,9 @@ const enDictionary = {
       buttonLabel: 'Order on WhatsApp',
     },
     footer: {
+      description: 'Homemade cakes prepared with care, flavor, and a warm presentation for special moments.',
+      socialTitle: 'Social media',
+      rights: "D'Lourdes Casa de Bolos. Made-to-order cakes with direct service.",
       serviceNote: 'Orders are made to order.',
       pickupNote: 'Delivery or pickup is arranged during service.',
     },

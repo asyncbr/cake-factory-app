@@ -1,5 +1,12 @@
 import type { Locale } from '@/src/i18n/config';
 
+export type SocialLinkId = 'instagram' | 'facebook' | 'x' | 'tiktok';
+
+export type SocialLink = {
+  id: SocialLinkId;
+  href: string;
+};
+
 export const siteConfig = {
   brandName: "D'Lourdes Casa de Bolos",
   instagramUrl: 'https://instagram.com/dlourdes.bolos',
@@ -7,6 +14,9 @@ export const siteConfig = {
   whatsappNumber: '5511958316072',
   contactEmail: 'dlourdesoficial@gmail.com',
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://cake-factory-app.vercel.app',
+  socialLinks: [
+    { id: 'instagram', href: 'https://instagram.com/dlourdes.bolos' },
+  ] as SocialLink[],
 } as const;
 
 export function buildWhatsAppLink(message: string) {
