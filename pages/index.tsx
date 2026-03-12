@@ -3,7 +3,6 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import {
   buildWhatsAppLink,
   isSiteLocale,
@@ -173,20 +172,6 @@ export default function Home() {
                   </p>
                 </a>
 
-                <div className="flex shrink-0 items-center gap-2 lg:hidden">
-                  <SignedOut>
-                    <SignInButton mode="modal">
-                      <button className="rounded-2xl border border-stone-300 px-3 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-400 hover:text-stone-900">
-                        {content.auth.signIn}
-                      </button>
-                    </SignInButton>
-                  </SignedOut>
-                  <SignedIn>
-                    <div className="flex items-center gap-3">                      
-                      <UserButton afterSignOutUrl="/" />
-                    </div>
-                  </SignedIn>
-                </div>
               </div>
 
               <nav
@@ -271,24 +256,6 @@ export default function Home() {
                     ))}
                   </div>
                 </div>
-                <SignedOut>
-                  <SignInButton mode="modal">
-                    <button className="rounded-full border border-stone-300 px-4 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-400 hover:text-stone-900">
-                      {content.auth.signIn}
-                    </button>
-                  </SignInButton>
-                </SignedOut>
-                <SignedIn>
-                  <div className="flex items-center gap-3">
-                    {/* <Link
-                      href="/product"
-                      className="rounded-full border border-stone-300 px-4 py-2 text-sm font-medium text-stone-700 transition hover:border-stone-400 hover:text-stone-900"
-                    >
-                      {content.auth.goToApp}
-                    </Link> */}
-                    <UserButton afterSignOutUrl="/" />
-                  </div>
-                </SignedIn>
                 <a
                   href={primaryWhatsAppLink}
                   target="_blank"
