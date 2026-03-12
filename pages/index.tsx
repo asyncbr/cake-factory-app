@@ -12,6 +12,11 @@ import {
   supportedLocales,
   type SiteLocale,
 } from '@/lib/site';
+import {
+  getLocalizedFlavorOptions,
+  getLocalizedGalleryItems,
+  getLocalizedProducts,
+} from '@/lib/products';
 
 function SectionHeading({
   eyebrow,
@@ -53,6 +58,9 @@ export default function Home() {
   const routerLocale = router.locale ?? null;
   const locale: SiteLocale = isSiteLocale(routerLocale) ? routerLocale : 'pt-BR';
   const content = siteContent[locale];
+  const products = getLocalizedProducts(locale);
+  const galleryItems = getLocalizedGalleryItems(locale);
+  const flavorOptions = getLocalizedFlavorOptions(locale);
   const primaryWhatsAppLink = buildWhatsAppLink(content.whatsapp.defaultMessage);
   const localePath = locale === 'pt-BR' ? '' : `/${locale}`;
   const canonicalUrl = `${siteConfig.siteUrl}${localePath}`;
@@ -100,15 +108,17 @@ export default function Home() {
   const [selectedVariants, setSelectedVariants] = useState<Record<string, string>>(
     () =>
       Object.fromEntries(
-        content.products.map((product) => [product.name, product.variants[0]])
+        products.map((product) => [product.id, product.variants[0]])
       )
   );
 
   useEffect(() => {
     setSelectedVariants(
-      Object.fromEntries(content.products.map((product) => [product.name, product.variants[0]]))
+      Object.fromEntries(
+        getLocalizedProducts(locale).map((product) => [product.id, product.variants[0]])
+      )
     );
-  }, [content.products]);
+  }, [locale]);
 
   const handleFieldChange = (field: keyof ContactFormState, value: string) => {
     setFormState((current) => ({
@@ -379,7 +389,7 @@ export default function Home() {
                 <div className="rounded-[1.5rem] bg-white/90 p-4 shadow-lg">
                   <Image
                     src="/carrot-cake-with-chocolate-topper.png"
-                    alt={content.gallerySection.items[1].alt}
+                    alt={galleryItems[1]?.alt ?? products[0]?.imageAlt ?? ''}
                     width={800}
                     height={960}
                     className="h-auto w-full rounded-[1.25rem] object-cover"
@@ -463,16 +473,24 @@ export default function Home() {
           </section>
 
           <section id="products" className="pt-20">
-            <SectionHeading
-              eyebrow={content.productsSection.eyebrow}
-              title={content.productsSection.title}
-              description={content.productsSection.description}
-            />
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <SectionHeading
+                eyebrow={content.productsSection.eyebrow}
+                title={content.productsSection.title}
+                description={content.productsSection.description}
+              />
+              <Link
+                href="/products"
+                className="inline-flex rounded-full border border-stone-300 px-5 py-3 text-sm font-semibold text-stone-800 transition hover:border-stone-400 hover:bg-white/70"
+              >
+                {content.productsSection.viewAllLabel}
+              </Link>
+            </div>
 
             <div className="mt-10 grid gap-6 lg:grid-cols-2">
-              {content.products.map((product) => (
+              {products.map((product) => (
                 <article
-                  key={product.name}
+                  key={product.id}
                   className="h-full overflow-hidden rounded-[2rem] border border-stone-200 bg-white shadow-[0_22px_60px_rgba(91,67,50,0.08)]"
                 >
                   <div className="grid h-full gap-0 md:grid-cols-[0.95fr_1.05fr]">
@@ -508,17 +526,17 @@ export default function Home() {
                             >
                               <button
                                 type="button"
-                                onClick={() => handleVariantChange(product.name, variant)}
-                                aria-pressed={selectedVariants[product.name] === variant}
+                                onClick={() => handleVariantChange(product.id, variant)}
+                                aria-pressed={selectedVariants[product.id] === variant}
                                 className={`flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm transition ${
-                                  selectedVariants[product.name] === variant
+                                  selectedVariants[product.id] === variant
                                     ? 'bg-stone-900 text-amber-50'
                                     : 'bg-stone-50 text-stone-800 hover:bg-stone-100'
                                 }`}
                               >
                                 <span
                                   className={`h-2.5 w-2.5 rounded-full ${
-                                    selectedVariants[product.name] === variant
+                                    selectedVariants[product.id] === variant
                                       ? 'bg-amber-200'
                                       : 'bg-amber-700'
                                   }`}
@@ -533,7 +551,7 @@ export default function Home() {
                       <div className="mt-8 md:mt-auto">
                         <a
                           href={buildWhatsAppLink(
-                            `${product.whatsappMessage} ${content.whatsapp.variantPrefix}: ${selectedVariants[product.name]}.`
+                            `${product.whatsappMessage} ${content.whatsapp.variantPrefix}: ${selectedVariants[product.id]}.`
                           )}
                           target="_blank"
                           rel="noreferrer"
@@ -557,7 +575,7 @@ export default function Home() {
             />
 
             <div className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-              {content.gallerySection.items.map((item) => (
+              {galleryItems.map((item) => (
                 <figure
                   key={item.title}
                   className="flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-stone-200 bg-white shadow-sm"
@@ -724,7 +742,7 @@ export default function Home() {
                       required
                     >
                       <option value="">{content.contactForm.options.flavorPlaceholder}</option>
-                      {content.contactForm.options.flavors.map((option) => (
+                      {flavorOptions.map((option) => (
                         <option key={option.value} value={option.label}>
                           {option.label}
                         </option>
