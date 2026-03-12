@@ -14,6 +14,9 @@ export const siteConfig = {
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://cake-factory-app.vercel.app',
   socialLinks: [
     { id: 'instagram', href: 'https://instagram.com/dlourdes.bolos' },
+    { id: 'facebook', href: 'https://facebook.com/dlourdes.bolos' },
+    { id: 'tiktok', href: 'https://tiktok.com/@dlourdes.bolos' },
+    { id: 'x', href: 'https://x.com/dlourdes.bolos' },
   ] as SocialLink[],
 } as const;
 
